@@ -39,7 +39,7 @@ body{background:var(--bg);background-image:radial-gradient(ellipse at 15% 15%,va
 .tabs{border-bottom:1px solid var(--bdr);padding:0 20px;display:flex;gap:2px;overflow-x:auto}
 .tab{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:9px 12px;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .tab:hover{color:rgba(255,255,255,.8)}.tab.on{color:var(--red);border-bottom-color:var(--red)}
-.panels{padding:18px 20px;max-width:900px;margin:0 auto}
+.panels{padding:18px 20px;max-width:920px;margin:0 auto}
 .panel{display:none;flex-direction:column;gap:14px}.panel.on{display:flex}
 .card{background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--bdr)}
 .lbl{font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
@@ -83,25 +83,7 @@ table.st tr:not(.nor):nth-child(even){background:var(--row-even)}
 .gbtn:hover{border-color:var(--blue);color:var(--text)}.gbtn.on{background:rgba(96,165,250,.15);border-color:var(--blue);color:var(--blue)}
 .gbtn.nor-grp{border-color:rgba(239,43,45,.5);color:var(--red);background:rgba(239,43,45,.1)}
 .gbtn.nor-grp.on{background:rgba(239,43,45,.2)}
-.bracket-scroll{overflow-x:auto}
-.bracket{display:grid;grid-template-columns:repeat(5,minmax(160px,1fr));gap:12px;align-items:start;min-width:700px}
-.brnd{display:flex;flex-direction:column;gap:8px}
-.brnd-title{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.match{background:var(--match-bg);border:1px solid var(--match-bdr);border-radius:10px;overflow:hidden}
-.match.nor-match{border-color:rgba(239,43,45,.5);background:rgba(239,43,45,.08)}
-.team-row{display:flex;align-items:center;justify-content:space-between;padding:7px 11px;font-size:12px;color:var(--text)}
-.team-row:first-child{border-bottom:1px solid var(--bdr)}
-.team-row.winner{background:rgba(74,222,128,.1);font-weight:700}
-.team-seed{font-size:10px;color:var(--muted);margin-right:5px}.tbd{opacity:.5;font-style:italic}
-.nor-row{background:rgba(239,43,45,.18)!important;border-left:3px solid var(--red)!important}
-.preview-badge{background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--gold);margin-bottom:14px;line-height:1.6}
-.rbtn{background:rgba(239,43,45,.15);border:1px solid rgba(239,43,45,.4);color:var(--red);font-weight:700;font-size:12px;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:var(--font-b);transition:all .2s}
-.rbtn:hover{background:rgba(239,43,45,.3)}.rbtn:disabled{opacity:.45;cursor:not-allowed}
-.tbtn{background:var(--match-bg);border:1px solid var(--bdr);color:var(--muted);font-size:18px;width:34px;height:34px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
-.tbtn:hover{border-color:var(--red);color:var(--text)}
-.msg{font-size:11px}.ok{color:var(--green)}.warn{color:var(--orange)}
-
-/* ── Prediksjon-CSS ─────────────────────────────────────────────────────── */
+/* Prediksjon CSS */
 .preset-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .pbtn{background:var(--match-bg);border:1px solid var(--match-bdr);border-radius:10px;padding:9px 14px;cursor:pointer;text-align:left;transition:all .2s;flex:1;min-width:150px}
 .pbtn:hover{border-color:var(--gold);background:rgba(251,191,36,.08)}
@@ -111,78 +93,93 @@ table.st tr:not(.nor):nth-child(even){background:var(--row-even)}
 .pbtn-desc{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.4}
 .sliders{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
 .sl-row{display:grid;grid-template-columns:140px 1fr 36px;gap:10px;align-items:center}
-.sl-lbl{font-size:12px;color:var(--text-dim)}
-.sl-lbl span{font-size:10px;color:var(--muted);display:block;margin-top:1px}
+.sl-lbl{font-size:12px;color:var(--text-dim)}.sl-lbl span{font-size:10px;color:var(--muted);display:block;margin-top:1px}
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:3px;background:var(--bdr);outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);cursor:pointer;border:2px solid var(--bg)}
 input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);cursor:pointer;border:2px solid var(--bg)}
 .sl-val{font-family:var(--font-d);font-size:15px;font-weight:700;color:var(--gold);text-align:right}
 .gen-btn{background:linear-gradient(135deg,rgba(251,191,36,.25),rgba(239,43,45,.2));border:1px solid rgba(251,191,36,.5);color:var(--gold);font-family:var(--font-d);font-size:15px;font-weight:900;letter-spacing:.1em;padding:11px 20px;border-radius:10px;cursor:pointer;width:100%;text-transform:uppercase;transition:all .2s}
 .gen-btn:hover{background:linear-gradient(135deg,rgba(251,191,36,.35),rgba(239,43,45,.3))}
-
-/* Group mini-tables */
-.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
 .mini-group{background:var(--match-bg);border:1px solid var(--match-bdr);border-radius:10px;overflow:hidden}
 .mini-grp-hdr{font-family:var(--font-d);font-size:12px;font-weight:700;letter-spacing:.1em;padding:6px 10px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--match-bdr);color:var(--muted)}
 .mini-team{display:flex;align-items:center;gap:6px;padding:5px 10px;font-size:12px;border-bottom:1px solid rgba(255,255,255,.04)}
 .mini-team:last-child{border-bottom:none}
-.mini-team.t1{background:rgba(74,222,128,.1)}
-.mini-team.t2{background:rgba(96,165,250,.07)}
-.mini-team.t3{background:rgba(251,191,36,.07)}
-.mini-team.t4{}
-.mini-team.nor{border-left:2px solid var(--red)!important}
+.mini-team.t1{background:rgba(74,222,128,.1)}.mini-team.t2{background:rgba(96,165,250,.07)}
+.mini-team.t3{background:rgba(251,191,36,.07)}.mini-team.nor{border-left:2px solid var(--red)!important}
 .mini-pos{font-family:var(--font-d);font-size:13px;font-weight:900;color:var(--text-faint);width:14px;flex-shrink:0}
 .mini-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mini-score{font-size:10px;font-weight:700;color:var(--text-faint)}
 .mini-q{font-size:9px;padding:1px 4px;border-radius:3px;font-weight:700;flex-shrink:0}
 .mq-1{background:#16a34a;color:#fff}.mq-2{background:#1d4ed8;color:#fff}.mq-3{background:#d97706;color:#fff}.mq-out{background:#6b7280;color:#fff}
-
-/* 3rd place section */
-.third-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
-.third-card{border-radius:9px;padding:8px 12px;font-size:12px;border:1px solid var(--match-bdr)}
-.third-card.adv{background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.4)}
-.third-card.out{background:var(--match-bg);opacity:.5}
-.third-rank{font-family:var(--font-d);font-size:20px;font-weight:900;color:var(--text-faint)}
-.third-name{font-weight:600;margin-top:2px}
-.third-score{font-size:11px;color:var(--muted);margin-top:2px}
-
+.nor-pred-box{background:rgba(239,43,45,.1);border:1px solid rgba(239,43,45,.35);border-radius:12px;padding:14px 16px;margin-bottom:4px}
+.nor-pred-title{font-family:var(--font-d);font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--red);margin-bottom:8px}
+.copy-btn{background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.4);color:var(--blue);font-weight:700;font-size:13px;padding:10px 18px;border-radius:9px;cursor:pointer;font-family:var(--font-b);transition:all .2s;width:100%;margin-top:4px}
+.copy-btn:hover{background:rgba(96,165,250,.25)}.copy-btn.done{background:rgba(74,222,128,.15);border-color:rgba(74,222,120,.4);color:var(--green)}
+/* Bracket CSS */
+.bracket-outer{display:flex;flex-direction:column;gap:14px}
+.qcard{border-radius:12px;padding:14px;border:1px solid var(--match-bdr);background:var(--match-bg)}
+.qcard.nor-quad{border-color:rgba(239,43,45,.5);background:rgba(239,43,45,.06)}
+.qcard-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:6px}
+.qcard-title{font-family:var(--font-d);font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.qcard-sf{font-size:11px;color:var(--muted)}
+.bracket-inner{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qpod{display:flex;flex-direction:column;gap:4px}
+.qpod-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-family:var(--font-d)}
+.r32m{display:flex;align-items:center;gap:6px;padding:6px 9px;border-radius:7px;font-size:11.5px;background:var(--res-bg);border-left:2px solid transparent;cursor:default}
+.r32m .mid{font-size:9px;color:var(--text-faint);padding:0 2px}
+.r32m.nor-m{border-left-color:var(--red)!important;background:rgba(239,43,45,.1)!important}
+.r32m.sim-w{border-left-color:var(--green);background:rgba(74,222,128,.06)}
+.r32m.sim-l{opacity:.5}
+.r32m .slot-lbl{font-size:9px;color:var(--text-faint);font-family:var(--font-d);font-weight:700;letter-spacing:.05em;min-width:24px;flex-shrink:0}
+.r32m .team-name{flex:1;font-weight:600}
+.r32m .str-val{font-size:10px;color:var(--muted);font-family:monospace}
+.r16-conn{font-size:11px;color:var(--muted);padding:5px 9px;border-top:1px dashed rgba(255,255,255,.1);margin-top:5px;display:flex;align-items:center;gap:4px}
+.qf-row{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:8px;padding:8px 12px;font-size:12px;display:flex;align-items:center;gap:8px;margin-top:8px}
+.qf-winner{font-weight:700;flex:1}
+/* Norway path */
+.nor-path-box{background:rgba(239,43,45,.1);border:1px solid rgba(239,43,45,.35);border-radius:12px;padding:14px 16px}
+.nor-path-title{font-family:var(--font-d);font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--red);margin-bottom:8px}
+.path-steps{display:flex;flex-direction:column;gap:5px}
+.path-step{display:flex;align-items:center;gap:10px;padding:7px 12px;border-radius:8px;font-size:12px;background:var(--res-bg);border-left:3px solid var(--muted)}
+.path-step.adv{background:rgba(74,222,128,.1);border-left-color:var(--green)}
+.path-step.elim{background:rgba(239,43,45,.08);border-left-color:var(--danger)}
+.path-step.maybe{border-left-color:#d97706;background:rgba(251,191,36,.05)}
+.path-round{font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);min-width:55px;flex-shrink:0}
+.path-match{flex:1}.path-result{font-size:10px;font-weight:700;white-space:nowrap}
+.path-result.w{color:var(--green)}.path-result.l{color:var(--danger)}
 /* Semis */
 .semis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .semi-card{border-radius:12px;padding:14px;text-align:center;border:1px solid var(--match-bdr);background:var(--match-bg)}
-.semi-medal{font-size:24px;margin-bottom:6px}
+.semi-medal{font-size:24px;margin-bottom:4px}
 .semi-place{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
-.semi-team{font-size:18px;margin-top:4px}
-.semi-name{font-size:12px;font-weight:700;margin-top:4px;color:var(--text)}
-.semi-str{font-size:11px;color:var(--muted);margin-top:3px}
+.semi-team{font-size:22px;margin-top:4px}
+.semi-name{font-size:12px;font-weight:700;margin-top:3px;color:var(--text)}
+.semi-score{font-size:11px;color:var(--muted);margin-top:3px}
 .semi-card.s1{border-color:rgba(251,191,36,.6);background:rgba(251,191,36,.08)}
-.semi-card.s2{border-color:rgba(200,200,210,.4);background:rgba(200,200,210,.05)}
-.semi-card.s3{border-color:rgba(180,120,50,.4);background:rgba(180,120,50,.05)}
+.semi-card.s2{border-color:rgba(200,200,210,.4);background:rgba(200,200,210,.04)}
+.semi-card.s3{border-color:rgba(180,120,50,.4);background:rgba(180,120,50,.04)}
 .semi-card.s4{border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.04)}
 .semi-card.nor-semi{border-color:var(--red)!important;background:rgba(239,43,45,.1)!important}
-
-/* Norge-boksen i prediksjon */
-.nor-pred-box{background:rgba(239,43,45,.1);border:1px solid rgba(239,43,45,.35);border-radius:12px;padding:14px 16px;margin-bottom:4px}
-.nor-pred-title{font-family:var(--font-d);font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--red);margin-bottom:8px}
-.nor-pred-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-bottom:5px;color:var(--text-dim)}
-.nor-pred-val{font-weight:700;color:var(--text)}
-.nor-pred-note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.6;border-top:1px solid rgba(239,43,45,.2);padding-top:8px}
-
-/* Kopier-knapp */
-.copy-btn{background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.4);color:var(--blue);font-weight:700;font-size:13px;padding:10px 18px;border-radius:9px;cursor:pointer;font-family:var(--font-b);transition:all .2s;width:100%;margin-top:4px}
-.copy-btn:hover{background:rgba(96,165,250,.25)}.copy-btn.done{background:rgba(74,222,128,.15);border-color:rgba(74,222,120,.4);color:var(--green)}
-
-/* Strength bar */
-.str-bar-wrap{background:var(--bdr);border-radius:3px;height:4px;flex:1;overflow:hidden}
-.str-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--gold));transition:width .4s}
-
+/* third-place cards */
+.third-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:8px}
+.third-card{border-radius:9px;padding:8px 12px;font-size:12px;border:1px solid var(--match-bdr)}
+.third-card.adv{background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.4)}
+.third-card.out{background:var(--match-bg);opacity:.5}
+.rbtn{background:rgba(239,43,45,.15);border:1px solid rgba(239,43,45,.4);color:var(--red);font-weight:700;font-size:12px;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:var(--font-b);transition:all .2s}
+.rbtn:hover{background:rgba(239,43,45,.3)}.rbtn:disabled{opacity:.45;cursor:not-allowed}
+.tbtn{background:var(--match-bg);border:1px solid var(--bdr);color:var(--muted);font-size:18px;width:34px;height:34px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.tbtn:hover{border-color:var(--red);color:var(--text)}
+.msg{font-size:11px}.ok{color:var(--green)}.warn{color:var(--orange)}
+.preview-badge{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--gold);line-height:1.6}
 footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
-@media(max-width:600px){
+@media(max-width:640px){
   .hdr-t{font-size:16px}.tab{font-size:11px;padding:8px 9px}
   .hero-pos{font-size:24px}.s-val{font-size:22px}
   .rr{grid-template-columns:48px 1fr 58px 1fr;font-size:11px}
   .semis-grid{grid-template-columns:repeat(2,1fr)}
   .sl-row{grid-template-columns:110px 1fr 30px}
   .pbtn{min-width:130px}
+  .bracket-inner{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -200,7 +197,6 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
     <div class="msg" id="msg"></div>
   </div>
 </div>
-
 <div class="tabs">
   <button class="tab on"  onclick="tab('i',this)">🇳🇴 Gruppe I</button>
   <button class="tab"     onclick="tab('g',this)">🌍 Andre grupper</button>
@@ -209,10 +205,9 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
   <button class="tab"     onclick="tab('st',this)">📊 Statistikk</button>
   <button class="tab"     onclick="tab('p',this)">🔮 Prediksjon</button>
 </div>
-
 <div class="panels">
 
-<!-- ── GRUPPE I ── -->
+<!-- GRUPPE I -->
 <div class="panel on" id="panel-i">
   <div class="hero" id="hero"></div>
   <div class="card">
@@ -226,7 +221,7 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
   </div>
 </div>
 
-<!-- ── ANDRE GRUPPER ── -->
+<!-- ANDRE GRUPPER -->
 <div class="panel" id="panel-g">
   <div class="card">
     <div class="lbl" style="color:var(--blue)">Alle grupper A–L</div>
@@ -241,7 +236,7 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
   </div>
 </div>
 
-<!-- ── RESULTATER ── -->
+<!-- RESULTATER -->
 <div class="panel" id="panel-r">
   <div class="card">
     <div class="lbl" style="color:var(--orange)">Gruppe I · Alle resultater <span id="r-src" style="font-size:10px;font-weight:400;opacity:.5"></span></div>
@@ -249,19 +244,23 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
   </div>
 </div>
 
-<!-- ── SLUTTSPILL ── -->
+<!-- SLUTTSPILL -->
 <div class="panel" id="panel-s">
-  <div class="card" style="border-color:rgba(251,191,36,.25)">
-    <div class="lbl" style="color:var(--gold)">🏆 Sluttspill · fra 1. juli · USA</div>
-    <div class="preview-badge">⚽ Sluttspillet starter 1. juli. Topp 2 fra hver gruppe + 8 beste 3.-plasser (32 lag) til R32. Bruk 🔮 Prediksjon-fanen for å se hvem som kan gå videre.</div>
-    <div class="bracket-scroll"><div class="bracket" id="bracket"></div></div>
+  <div class="card nc" style="border-color:rgba(239,43,45,.3)">
+    <div class="lbl" style="color:var(--red)">🇳🇴 Norges vei – etter gruppeplass</div>
+    <div id="nor-bracket-preview"></div>
+  </div>
+  <div class="card" style="border-color:rgba(251,191,36,.2)">
+    <div class="lbl" style="color:var(--gold)">🏆 Sluttspill-bracket · R32 – Final</div>
+    <div class="preview-badge" style="margin-bottom:14px">Kampene spilles 28. jun–19. jul · 16 R32-matcher forhåndsbestemt av FIFA etter gruppe-posisjon. Generer en prediksjon (🔮-fanen) for å se hvem som fyller bracketet.</div>
+    <div class="bracket-outer" id="bracket-outer"></div>
   </div>
 </div>
 
-<!-- ── STATISTIKK ── -->
+<!-- STATISTIKK -->
 <div class="panel" id="panel-st">
   <div class="card">
-    <div class="lbl" style="color:var(--gold)">🏆 Toppscorere · Gruppespill <span id="st-src" style="font-size:10px;font-weight:400;opacity:.5"></span></div>
+    <div class="lbl" style="color:var(--gold)">🏆 Toppscorere <span id="st-src" style="font-size:10px;font-weight:400;opacity:.5"></span></div>
     <div class="tw"><table class="st" id="tbl-sc"></table></div>
   </div>
   <div class="card nc">
@@ -270,95 +269,58 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
   </div>
 </div>
 
-<!-- ── PREDIKSJON ── -->
+<!-- PREDIKSJON -->
 <div class="panel" id="panel-p">
-
-  <!-- Presets -->
   <div class="card">
-    <div class="lbl" style="color:var(--gold)">🔮 Velg strategi for tippekonkurransen</div>
+    <div class="lbl" style="color:var(--gold)">🔮 Velg vektingsstrategi for tippekonkurransen</div>
     <div class="preset-grid" id="preset-grid"></div>
     <div class="sliders" id="sliders"></div>
-    <button class="gen-btn" onclick="generatePrediction()">🎯 Generer prediksjon</button>
+    <button class="gen-btn" onclick="generatePrediction()">🎯 Generer prediksjon med sluttspillsimulering</button>
   </div>
-
-  <!-- Output -->
   <div id="pred-output" style="display:none;flex-direction:column;gap:14px"></div>
 </div>
 
-</div><!-- /panels -->
-<footer>Tabell og resultater fra Wikipedia · Turneringen starter 11. juni 2026</footer>
+</div>
+<footer>Tabell og resultater fra Wikipedia · Turneringen starter 11. juni 2026 · Bracket: FIFA Annex C</footer>
 
 <script>
-// ── Lagtabell ──────────────────────────────────────────────────────────────────
+// ── Lagdata ───────────────────────────────────────────────────────────────────
 const TEAM={
-  mexico:{f:'🇲🇽',no:'Mexico'},
-  'south-africa':{f:'🇿🇦',no:'Sør-Afrika'},
-  'south-korea':{f:'🇰🇷',no:'Sør-Korea'},
-  czechia:{f:'🇨🇿',no:'Tsjekkia'},
-  canada:{f:'🇨🇦',no:'Canada'},
-  bosnia:{f:'🇧🇦',no:'Bosnia-H.'},
-  qatar:{f:'🇶🇦',no:'Qatar'},
-  switzerland:{f:'🇨🇭',no:'Sveits'},
-  brazil:{f:'🇧🇷',no:'Brasil'},
-  morocco:{f:'🇲🇦',no:'Marokko'},
-  haiti:{f:'🇭🇹',no:'Haiti'},
-  scotland:{f:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',no:'Skottland'},
-  usa:{f:'🇺🇸',no:'USA'},
-  paraguay:{f:'🇵🇾',no:'Paraguay'},
-  australia:{f:'🇦🇺',no:'Australia'},
-  turkey:{f:'🇹🇷',no:'Tyrkia'},
-  germany:{f:'🇩🇪',no:'Tyskland'},
-  curacao:{f:'🇨🇼',no:'Curaçao'},
-  'ivory-coast':{f:'🇨🇮',no:'Elfenbenskysten'},
-  ecuador:{f:'🇪🇨',no:'Ecuador'},
-  netherlands:{f:'🇳🇱',no:'Nederland'},
-  japan:{f:'🇯🇵',no:'Japan'},
-  sweden:{f:'🇸🇪',no:'Sverige'},
-  tunisia:{f:'🇹🇳',no:'Tunisia'},
-  belgium:{f:'🇧🇪',no:'Belgia'},
-  egypt:{f:'🇪🇬',no:'Egypt'},
-  iran:{f:'🇮🇷',no:'Iran'},
-  'new-zealand':{f:'🇳🇿',no:'New Zealand'},
-  spain:{f:'🇪🇸',no:'Spania'},
-  'cape-verde':{f:'🇨🇻',no:'Kapp Verde'},
-  'saudi-arabia':{f:'🇸🇦',no:'Saudi-Arabia'},
-  uruguay:{f:'🇺🇾',no:'Uruguay'},
-  france:{f:'🇫🇷',no:'Frankrike'},
-  senegal:{f:'🇸🇳',no:'Senegal'},
-  iraq:{f:'🇮🇶',no:'Irak'},
-  norway:{f:'🇳🇴',no:'Norge'},
-  argentina:{f:'🇦🇷',no:'Argentina'},
-  algeria:{f:'🇩🇿',no:'Algeria'},
-  austria:{f:'🇦🇹',no:'Østerrike'},
-  jordan:{f:'🇯🇴',no:'Jordan'},
-  portugal:{f:'🇵🇹',no:'Portugal'},
-  'dr-congo':{f:'🇨🇩',no:'DR Kongo'},
-  uzbekistan:{f:'🇺🇿',no:'Usbekistan'},
-  colombia:{f:'🇨🇴',no:'Colombia'},
-  england:{f:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',no:'England'},
-  croatia:{f:'🇭🇷',no:'Kroatia'},
-  ghana:{f:'🇬🇭',no:'Ghana'},
-  panama:{f:'🇵🇦',no:'Panama'},
+  mexico:{f:'🇲🇽',no:'Mexico'},'south-africa':{f:'🇿🇦',no:'Sør-Afrika'},'south-korea':{f:'🇰🇷',no:'Sør-Korea'},
+  czechia:{f:'🇨🇿',no:'Tsjekkia'},canada:{f:'🇨🇦',no:'Canada'},bosnia:{f:'🇧🇦',no:'Bosnia-H.'},
+  qatar:{f:'🇶🇦',no:'Qatar'},switzerland:{f:'🇨🇭',no:'Sveits'},brazil:{f:'🇧🇷',no:'Brasil'},
+  morocco:{f:'🇲🇦',no:'Marokko'},haiti:{f:'🇭🇹',no:'Haiti'},scotland:{f:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',no:'Skottland'},
+  usa:{f:'🇺🇸',no:'USA'},paraguay:{f:'🇵🇾',no:'Paraguay'},australia:{f:'🇦🇺',no:'Australia'},
+  turkey:{f:'🇹🇷',no:'Tyrkia'},germany:{f:'🇩🇪',no:'Tyskland'},curacao:{f:'🇨🇼',no:'Curaçao'},
+  'ivory-coast':{f:'🇨🇮',no:'Elfenbenskysten'},ecuador:{f:'🇪🇨',no:'Ecuador'},
+  netherlands:{f:'🇳🇱',no:'Nederland'},japan:{f:'🇯🇵',no:'Japan'},sweden:{f:'🇸🇪',no:'Sverige'},
+  tunisia:{f:'🇹🇳',no:'Tunisia'},belgium:{f:'🇧🇪',no:'Belgia'},egypt:{f:'🇪🇬',no:'Egypt'},
+  iran:{f:'🇮🇷',no:'Iran'},'new-zealand':{f:'🇳🇿',no:'New Zealand'},spain:{f:'🇪🇸',no:'Spania'},
+  'cape-verde':{f:'🇨🇻',no:'Kapp Verde'},'saudi-arabia':{f:'🇸🇦',no:'Saudi-Arabia'},
+  uruguay:{f:'🇺🇾',no:'Uruguay'},france:{f:'🇫🇷',no:'Frankrike'},senegal:{f:'🇸🇳',no:'Senegal'},
+  iraq:{f:'🇮🇶',no:'Irak'},norway:{f:'🇳🇴',no:'Norge'},argentina:{f:'🇦🇷',no:'Argentina'},
+  algeria:{f:'🇩🇿',no:'Algeria'},austria:{f:'🇦🇹',no:'Østerrike'},jordan:{f:'🇯🇴',no:'Jordan'},
+  portugal:{f:'🇵🇹',no:'Portugal'},'dr-congo':{f:'🇨🇩',no:'DR Kongo'},uzbekistan:{f:'🇺🇿',no:'Usbekistan'},
+  colombia:{f:'🇨🇴',no:'Colombia'},england:{f:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',no:'England'},croatia:{f:'🇭🇷',no:'Kroatia'},
+  ghana:{f:'🇬🇭',no:'Ghana'},panama:{f:'🇵🇦',no:'Panama'},
 };
 function TLK(k){return TEAM[k]||{f:'⚽',no:k};}
 function TL(t){
   const k=t.toLowerCase().replace(/\s*\(.*?\)/g,'').trim();
   const MAP={'south africa':'south-africa','south korea':'south-korea','korea republic':'south-korea',
-    'czech republic':'czechia',"côte d'ivoire":'ivory-coast','ivory coast':'ivory-coast',
-    'turkey':'turkey','türkiye':'turkey','curacao':'curacao','curaçao':'curacao',
-    'new zealand':'new-zealand','cape verde':'cape-verde','saudi arabia':'saudi-arabia',
-    'dr congo':'dr-congo','congo':'dr-congo','united states':'usa','bosnia':'bosnia',
-    'bosnia and herzegovina':'bosnia','bosnia-herzegovina':'bosnia'};
+    'czech republic':'czechia',"côte d'ivoire":'ivory-coast','ivory coast':'ivory-coast','cote d\'ivoire':'ivory-coast',
+    'türkiye':'turkey','curaçao':'curacao','new zealand':'new-zealand','cape verde':'cape-verde',
+    'saudi arabia':'saudi-arabia','dr congo':'dr-congo','united states':'usa',
+    'bosnia and herzegovina':'bosnia','bosnia-herzegovina':'bosnia','bosnia & herzegovina':'bosnia'};
   const mapped=MAP[k];if(mapped) return TEAM[mapped]||{f:'⚽',no:t};
   for(const[key,v] of Object.entries(TEAM)) if(k.includes(key.replace(/-/g,' '))) return v;
   return {f:'⚽',no:t.charAt(0).toUpperCase()+t.slice(1)};
 }
 function isNor(t){return /norway|norge/i.test(t)||t.includes('🇳🇴');}
+function disp(k){const t=TLK(k);return `${t.f} ${t.no}`;}
 
-// ── Gruppe-data ────────────────────────────────────────────────────────────────
-function makeGroup(teams){
-  return teams.map((k,i)=>{const td=TLK(k);const q=i===0?'Q1':i===1?'Q2':i===2?'Q3':'E';return{pos:i+1,key:k,team:`${td.f} ${td.no}`,pld:0,w:0,d:0,l:0,gf:0,ga:0,gd:0,pts:0,qual:q,isN:k==='norway'};});
-}
+// ── Grupper ───────────────────────────────────────────────────────────────────
+function makeGroup(teams){return teams.map((k,i)=>{const td=TLK(k);const q=i===0?'Q1':i===1?'Q2':i===2?'Q3':'E';return{pos:i+1,key:k,team:`${td.f} ${td.no}`,pld:0,w:0,d:0,l:0,gf:0,ga:0,gd:0,pts:0,qual:q,isN:k==='norway'};});}
 const GROUPS={
   A:makeGroup(['mexico','south-africa','south-korea','czechia']),
   B:makeGroup(['canada','bosnia','qatar','switzerland']),
@@ -373,7 +335,6 @@ const GROUPS={
   K:makeGroup(['portugal','dr-congo','uzbekistan','colombia']),
   L:makeGroup(['england','croatia','ghana','panama']),
 };
-
 const NOR_SCHEDULE=[
   {date:'16. jun',time:'00:00',opp:'🇮🇶 Irak',venue:'Gillette Stadium, Boston',res:null},
   {date:'22. jun',time:'02:00',opp:'🇸🇳 Senegal',venue:'MetLife Stadium, New Jersey',res:null},
@@ -401,32 +362,99 @@ const GRP_FIXTURES={
   K:[{date:'15. jun',home:'🇵🇹 Portugal',away:'🇨🇩 DR Kongo',score:null,hl:false},{date:'15. jun',home:'🇺🇿 Usbekistan',away:'🇨🇴 Colombia',score:null,hl:false},{date:'21. jun',home:'🇵🇹 Portugal',away:'🇺🇿 Usbekistan',score:null,hl:false},{date:'21. jun',home:'🇨🇩 DR Kongo',away:'🇨🇴 Colombia',score:null,hl:false},{date:'25. jun',home:'🇵🇹 Portugal',away:'🇨🇴 Colombia',score:null,hl:false},{date:'25. jun',home:'🇺🇿 Usbekistan',away:'🇨🇩 DR Kongo',score:null,hl:false}],
   L:[{date:'16. jun',home:'🏴󠁧󠁢󠁥󠁮󠁧󠁿 England',away:'🇭🇷 Kroatia',score:null,hl:false},{date:'16. jun',home:'🇬🇭 Ghana',away:'🇵🇦 Panama',score:null,hl:false},{date:'21. jun',home:'🏴󠁧󠁢󠁥󠁮󠁧󠁿 England',away:'🇬🇭 Ghana',score:null,hl:false},{date:'21. jun',home:'🇭🇷 Kroatia',away:'🇵🇦 Panama',score:null,hl:false},{date:'26. jun',home:'🏴󠁧󠁢󠁥󠁮󠁧󠁿 England',away:'🇵🇦 Panama',score:null,hl:false},{date:'26. jun',home:'🇭🇷 Kroatia',away:'🇬🇭 Ghana',score:null,hl:false}],
 };
-
 const LIVE_GROUPS={};
 let activeGrp='A';
+
+// ── Offisiell R32-bracket (FIFA Annex C) ──────────────────────────────────────
+// Kilde: FIFA knockout-stage bracket schedule, verifisert mot gamblingcalc.com
+// R32 matchnumre M73–M88; R16 M89–M96; KF M97–M100; SF M101–M102; Finale M104
+const BRACKET={
+  r32:[
+    // KF1-halvdel
+    {id:'M73',s1:{t:'r',g:'A'},s2:{t:'r',g:'B'},        r16:'R16a'},
+    {id:'M74',s1:{t:'w',g:'E'},s2:{t:'3',gs:'ABCDF'},   r16:'R16a'},
+    {id:'M75',s1:{t:'w',g:'F'},s2:{t:'r',g:'C'},        r16:'R16b'},
+    {id:'M76',s1:{t:'w',g:'C'},s2:{t:'r',g:'F'},        r16:'R16b'},
+    // KF2-halvdel – NORGES HALVDEL
+    {id:'M77',s1:{t:'w',g:'I'},s2:{t:'3',gs:'CDFGH'},   r16:'R16c',nor:true},
+    {id:'M78',s1:{t:'r',g:'E'},s2:{t:'r',g:'I'},        r16:'R16c',nor:true},
+    {id:'M79',s1:{t:'w',g:'A'},s2:{t:'3',gs:'CEFHI'},   r16:'R16d'},
+    {id:'M80',s1:{t:'w',g:'L'},s2:{t:'3',gs:'EHIJK'},   r16:'R16d'},
+    // KF3-halvdel
+    {id:'M81',s1:{t:'w',g:'D'},s2:{t:'3',gs:'BEFIJ'},   r16:'R16e'},
+    {id:'M82',s1:{t:'w',g:'G'},s2:{t:'3',gs:'AEHIJ'},   r16:'R16e'},
+    {id:'M83',s1:{t:'r',g:'K'},s2:{t:'r',g:'L'},        r16:'R16f'},
+    {id:'M84',s1:{t:'w',g:'H'},s2:{t:'r',g:'J'},        r16:'R16f'},
+    // KF4-halvdel
+    {id:'M85',s1:{t:'w',g:'B'},s2:{t:'3',gs:'EFGIJ'},   r16:'R16g'},
+    {id:'M86',s1:{t:'r',g:'D'},s2:{t:'r',g:'G'},        r16:'R16g'},
+    {id:'M87',s1:{t:'w',g:'J'},s2:{t:'r',g:'H'},        r16:'R16h'},
+    {id:'M88',s1:{t:'w',g:'K'},s2:{t:'3',gs:'DEIJL'},   r16:'R16h'},
+  ],
+  r16:[
+    {id:'R16a',m1:'M73',m2:'M74',qf:'QF1'},{id:'R16b',m1:'M75',m2:'M76',qf:'QF1'},
+    {id:'R16c',m1:'M77',m2:'M78',qf:'QF2',nor:true},{id:'R16d',m1:'M79',m2:'M80',qf:'QF2'},
+    {id:'R16e',m1:'M81',m2:'M82',qf:'QF3'},{id:'R16f',m1:'M83',m2:'M84',qf:'QF3'},
+    {id:'R16g',m1:'M85',m2:'M86',qf:'QF4'},{id:'R16h',m1:'M87',m2:'M88',qf:'QF4'},
+  ],
+  qf:[
+    {id:'QF1',r1:'R16a',r2:'R16b',sf:'SF1'},
+    {id:'QF2',r1:'R16c',r2:'R16d',sf:'SF1',nor:true},
+    {id:'QF3',r1:'R16e',r2:'R16f',sf:'SF2'},
+    {id:'QF4',r1:'R16g',r2:'R16h',sf:'SF2'},
+  ],
+};
+const THIRD_SLOTS=[
+  {m:'M74',gs:'ABCDF'},{m:'M77',gs:'CDFGH'},{m:'M79',gs:'CEFHI'},
+  {m:'M80',gs:'EHIJK'},{m:'M81',gs:'BEFIJ'},{m:'M82',gs:'AEHIJ'},
+  {m:'M85',gs:'EFGIJ'},{m:'M88',gs:'DEIJL'},
+];
+
+// ── Lagdata for prediksjon: [FIFA-rang, form(1-10), VM-erfaring(1-10), spillerkvalitet(1-10), hjemme(0/1)] ──
+const TD={
+  mexico:[15,7,8,6,1],'south-africa':[65,6,4,5,0],'south-korea':[23,7,6,6,0],czechia:[36,7,6,6,0],
+  canada:[40,7,2,6,1],bosnia:[65,7,2,6,0],qatar:[35,5,2,5,0],switzerland:[20,8,6,7,0],
+  brazil:[5,7,10,9,0],morocco:[14,7,5,7,0],haiti:[83,4,1,4,0],scotland:[38,7,3,7,0],
+  usa:[13,8,5,8,1],paraguay:[61,6,5,5,0],australia:[22,6,5,6,0],turkey:[30,8,5,7,0],
+  germany:[13,8,10,8,0],curacao:[160,5,1,4,0],'ivory-coast':[40,7,4,7,0],ecuador:[44,6,3,6,0],
+  netherlands:[7,8,9,8,0],japan:[18,9,6,8,0],sweden:[26,7,7,7,0],tunisia:[30,5,5,5,0],
+  belgium:[8,7,7,8,0],egypt:[52,6,3,6,0],iran:[21,6,5,6,0],'new-zealand':[99,5,2,5,0],
+  spain:[2,9,9,9,0],'cape-verde':[70,7,1,5,0],'saudi-arabia':[56,5,5,5,0],uruguay:[17,8,9,7,0],
+  france:[3,8,10,9,0],senegal:[19,7,4,7,0],iraq:[58,6,2,5,0],norway:[29,9,3,7,0],
+  argentina:[1,9,10,10,0],algeria:[34,7,5,6,0],austria:[28,8,4,7,0],jordan:[87,6,1,5,0],
+  portugal:[6,8,8,8,0],'dr-congo':[44,6,3,6,0],uzbekistan:[75,7,1,5,0],colombia:[12,9,6,8,0],
+  england:[4,8,9,9,0],croatia:[10,7,8,7,0],ghana:[60,6,5,6,0],panama:[70,6,2,5,0],
+};
+function calcStrength(key,w){
+  const d=TD[key];if(!d)return 0;
+  const[rank,form,exp,squad,home]=d;
+  const rs=Math.max(5,100-(rank-1)*1.4);
+  const tot=w[0]+w[1]+w[2]+w[3]+w[4];if(!tot)return 50;
+  return(rs*w[0]+form*10*w[1]+exp*10*w[2]+squad*10*w[3]+home*100*w[4])/tot;
+}
+const PRED_GROUPS={A:['mexico','south-africa','south-korea','czechia'],B:['canada','bosnia','qatar','switzerland'],C:['brazil','morocco','haiti','scotland'],D:['usa','paraguay','australia','turkey'],E:['germany','curacao','ivory-coast','ecuador'],F:['netherlands','japan','sweden','tunisia'],G:['belgium','egypt','iran','new-zealand'],H:['spain','cape-verde','saudi-arabia','uruguay'],I:['france','senegal','iraq','norway'],J:['argentina','algeria','austria','jordan'],K:['portugal','dr-congo','uzbekistan','colombia'],L:['england','croatia','ghana','panama']};
 
 // ── Wikipedia ─────────────────────────────────────────────────────────────────
 async function fetchWikiHTML(page){
   const p=new URLSearchParams({action:'parse',page,prop:'text',format:'json',origin:'*'});
   const r=await fetch(`https://en.wikipedia.org/w/api.php?${p}`);
-  if(!r.ok) throw new Error('HTTP '+r.status);
-  const d=await r.json();
-  if(d.error) throw new Error(d.error.info);
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const d=await r.json();if(d.error)throw new Error(d.error.info);
   return new DOMParser().parseFromString(d.parse.text['*'],'text/html');
 }
 function parseStandings(doc){
   for(const tbl of doc.querySelectorAll('table.wikitable')){
     const hdr=[...(tbl.querySelector('tr')?.querySelectorAll('th')||[])].map(th=>th.textContent.trim().toUpperCase().replace(/\s+/g,' '));
-    if(!hdr.some(h=>h==='PLD'||h==='GP')||!hdr.some(h=>h==='PTS'||h==='PT')) continue;
+    if(!hdr.some(h=>h==='PLD'||h==='GP')||!hdr.some(h=>h==='PTS'||h==='PT'))continue;
     const ci=ns=>{const i=hdr.findIndex(h=>ns.includes(h));return i>=0?i:undefined;};
     const col={pos:ci(['#','POS'])??0,team:ci(['TEAM'])??1,pld:ci(['PLD','GP']),w:ci(['W']),d:ci(['D']),l:ci(['L']),gf:ci(['GF']),ga:ci(['GA']),gd:ci(['GD','+/−','±']),pts:ci(['PTS','PT'])};
-    if(col.pld===undefined||col.pts===undefined) continue;
+    if(col.pld===undefined||col.pts===undefined)continue;
     const rows=[];
     for(const tr of tbl.querySelectorAll('tbody tr')){
-      const cells=[...tr.querySelectorAll('td,th')];if(cells.length<6) continue;
+      const cells=[...tr.querySelectorAll('td,th')];if(cells.length<6)continue;
       const g=i=>i!==undefined&&i<cells.length?cells[i].textContent.trim().replace(/\[.*?\]/g,'').replace(/\u00a0/g,' ').trim():'';
-      const posT=g(col.pos);if(!/^\d+$/.test(posT)) continue;
-      const teamT=g(col.team);if(!teamT||teamT.length<2) continue;
+      const posT=g(col.pos);if(!/^\d+$/.test(posT))continue;
+      const teamT=g(col.team);if(!teamT||teamT.length<2)continue;
       const pos=+posT,pld=+g(col.pld)||0,w=+g(col.w)||0,d=+g(col.d)||0,l=+g(col.l)||0;
       const gf=+g(col.gf)||0,ga=+g(col.ga)||0;
       const gdR=g(col.gd),gd=col.gd!==undefined?(parseInt(gdR.replace(/\+/,''))||gf-ga):gf-ga;
@@ -435,7 +463,7 @@ function parseStandings(doc){
       const td=TL(teamT);
       rows.push({pos,team:`${td.f} ${td.no}`,pld,w,d,l,gf,ga,gd,pts,qual,isN:isNor(teamT)});
     }
-    if(rows.length>=4) return rows;
+    if(rows.length>=4)return rows;
   }
   return null;
 }
@@ -443,22 +471,18 @@ function parseResultsHTML(doc){
   const results=[];
   for(const tbl of doc.querySelectorAll('table.wikitable')){
     for(const row of tbl.querySelectorAll('tr')){
-      const cells=[...row.querySelectorAll('td')];if(cells.length<5) continue;
+      const cells=[...row.querySelectorAll('td')];if(cells.length<5)continue;
       const texts=cells.map(c=>c.textContent.trim().replace(/\[.*?\]/g,'').replace(/\u00a0/g,' ').trim());
-      const di=texts.findIndex(t=>/\d{1,2}\s+(June|July)\s+2026/i.test(t));
-      if(di===-1) continue;
+      const di=texts.findIndex(t=>/\d{1,2}\s+(June|July)\s+2026/i.test(t));if(di===-1)continue;
       const dm=texts[di].match(/(\d{1,2})\s+(June|July)/i);
       const mth=dm?.[2]==='July'?'jul':'jun';const day=dm?.[1];
       let hs=-1,as_=-1,si=-1;
-      for(let i=di+1;i<texts.length;i++){
-        const m=texts[i].match(/^(\d{1,2})\s*[–\-]\s*(\d{1,2})/);
-        if(m){hs=+m[1];as_=+m[2];si=i;break;}
-      }
-      if(si===-1) continue;
+      for(let i=di+1;i<texts.length;i++){const m=texts[i].match(/^(\d{1,2})\s*[–\-]\s*(\d{1,2})/);if(m){hs=+m[1];as_=+m[2];si=i;break;}}
+      if(si===-1)continue;
       let home='',away='';
       for(let i=si-1;i>di;i--){const t=texts[i];if(t.length>=3&&!/^\d/.test(t)&&!/\d{2}:\d{2}/.test(t)){home=t;break;}}
       for(let i=si+1;i<texts.length;i++){const t=texts[i];if(t.length>=3&&!/^\d/.test(t)&&!/arena|report|attend/i.test(t)){away=t;break;}}
-      if(!home||!away||home===away) continue;
+      if(!home||!away||home===away)continue;
       const ht=TL(home),at=TL(away);
       results.push({date:`${day}. ${mth}`,home:`${ht.f} ${ht.no}`,away:`${at.f} ${at.no}`,score:`${hs}–${as_}`,hl:isNor(home+away)});
     }
@@ -470,36 +494,20 @@ function parseResultsHTML(doc){
 function renderHero(st){
   const n=(st||GROUPS.I).find(r=>r.isN);
   if(!n){document.getElementById('hero').innerHTML='<div>Ingen data</div>';return;}
-  const adv=n.pos<=2,maybe=n.pos===3;
-  const gds=n.gd>0?`+${n.gd}`:n.gd;
+  const adv=n.pos<=2,maybe=n.pos===3;const gds=n.gd>0?`+${n.gd}`:n.gd;
   document.getElementById('hero').className='hero'+(adv?' adv':'');
-  document.getElementById('hero').innerHTML=`
-    <div><div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">🇳🇴 Norge · VM 2026 · Gruppe I</div>
-    <div class="hero-pos">Plass ${n.pos} <span>av 4</span></div>
-    ${adv?'<div style="font-size:12px;color:var(--green);font-weight:700;margin-top:4px">✓ Videre til 32-delsfinale</div>':
-      maybe?'<div style="font-size:12px;color:#d97706;font-weight:700;margin-top:4px">◌ Mulig videre (8 beste 3.-plasser)</div>':
-      n.pld===0?'<div style="font-size:12px;color:var(--muted);margin-top:4px">Turneringen starter 11. juni</div>':
-      '<div style="font-size:12px;color:var(--danger);font-weight:700;margin-top:4px">✗ Ute av turneringen</div>'}</div>
-    ${[['Poeng',n.pts,'#fff'],['Spilt',n.pld,'rgba(255,255,255,.7)'],['Seire',n.w,'var(--green)'],
-       ['Uavgjort',n.d,'#facc15'],['Tap',n.l,'var(--danger)'],['MF',gds,n.gd>=0?'var(--green)':'var(--danger)']].map(([l,v,c])=>
-      `<div><div class="s-val" style="color:${c}">${v}</div><div class="s-lbl">${l}</div></div>`).join('')}`;
+  document.getElementById('hero').innerHTML=`<div><div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">🇳🇴 Norge · VM 2026 · Gruppe I</div><div class="hero-pos">Plass ${n.pos} <span>av 4</span></div>${adv?'<div style="font-size:12px;color:var(--green);font-weight:700;margin-top:4px">✓ Videre til 32-delsfinale</div>':maybe?'<div style="font-size:12px;color:#d97706;font-weight:700;margin-top:4px">◌ Mulig videre (8 beste 3.-plasser)</div>':n.pld===0?'<div style="font-size:12px;color:var(--muted);margin-top:4px">Turneringen starter 11. juni</div>':'<div style="font-size:12px;color:var(--danger);font-weight:700;margin-top:4px">✗ Ute av turneringen</div>'}</div>${[['Poeng',n.pts,'#fff'],['Spilt',n.pld,'rgba(255,255,255,.7)'],['Seire',n.w,'var(--green)'],['Uavgjort',n.d,'#facc15'],['Tap',n.l,'var(--danger)'],['MF',gds,n.gd>=0?'var(--green)':'var(--danger)']].map(([l,v,c])=>`<div><div class="s-val" style="color:${c}">${v}</div><div class="s-lbl">${l}</div></div>`).join('')}`;
 }
 function renderTable(id,rows){
   const H=['#','Lag','KP','V','U','T','MF','MM','MD','P',''];
   const head=`<thead><tr>${H.map((h,i)=>`<th style="text-align:${i<=1?'left':'center'}">${h}</th>`).join('')}</tr></thead>`;
-  const body=rows.map(r=>{
-    const gds=r.gd>0?`+${r.gd}`:r.gd;
-    const qcls=r.qual==='Q1'||r.qual==='Q2'?'pq':r.qual==='Q3'?'pq3':'pr';
-    const bdg=r.qual==='Q1'||r.qual==='Q2'?'<span class="bdg bdg-q">Videre</span>':r.qual==='Q3'?'<span class="bdg bdg-q3">Mulig</span>':r.pld>0?'<span class="bdg bdg-r">Ute</span>':'';
-    return `<tr class="${r.isN?'nor':''}"><td class="${qcls}">${r.pos}</td><td class="${r.isN?'nt':''}">${r.team}</td><td>${r.pld}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td>${r.gf}</td><td>${r.ga}</td><td class="${r.gd>0?'gd-p':r.gd<0?'gd-n':''}">${gds}</td><td class="pts">${r.pts}</td><td>${bdg}</td></tr>`;
-  }).join('');
+  const body=rows.map(r=>{const gds=r.gd>0?`+${r.gd}`:r.gd;const qcls=r.qual==='Q1'||r.qual==='Q2'?'pq':r.qual==='Q3'?'pq3':'pr';const bdg=r.qual==='Q1'||r.qual==='Q2'?'<span class="bdg bdg-q">Videre</span>':r.qual==='Q3'?'<span class="bdg bdg-q3">Mulig</span>':r.pld>0?'<span class="bdg bdg-r">Ute</span>':'';return `<tr class="${r.isN?'nor':''}"><td class="${qcls}">${r.pos}</td><td class="${r.isN?'nt':''}">${r.team}</td><td>${r.pld}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td>${r.gf}</td><td>${r.ga}</td><td class="${r.gd>0?'gd-p':r.gd<0?'gd-n':''}">${gds}</td><td class="pts">${r.pts}</td><td>${bdg}</td></tr>`;}).join('');
   document.getElementById(id).innerHTML=head+`<tbody>${body}</tbody>`;
 }
 function renderNorSchedule(){
   document.getElementById('sch-nor').innerHTML=NOR_SCHEDULE.map(g=>{
-    const played=g.res!==null;
-    let vd='',cls='';
-    if(played){const parts=(g.res||'0-0').split(/[–\-]/).map(Number);const[a,b]=[parts[0]||0,parts[1]||0];if(a>b){vd='SEIER';cls='w';}else if(a===b){vd='UAVGJORT';cls='d';}else{vd='TAP';cls='l';}}
+    const played=g.res!==null;let vd='',cls='';
+    if(played){const p=(g.res||'0-0').split(/[–\-]/).map(Number);const[a,b]=[p[0]||0,p[1]||0];if(a>b){vd='SEIER';cls='w';}else if(a===b){vd='UAVGJORT';cls='d';}else{vd='TAP';cls='l';}}
     return `<div class="sr ${played?'':'up'}"><div><div class="sm">${g.date} · ${g.time} (norsk tid) · ${g.venue}</div><div class="sg">🇳🇴 Norge vs ${g.opp}</div></div>${played?`<div class="sc-score"><span>${g.res}</span><span class="vd ${cls}">${vd}</span></div>`:`<span class="sc-up">Kommende</span>`}</div>`;
   }).join('');
 }
@@ -510,7 +518,7 @@ function renderResults(id,res){
 }
 const GRP_NAMES={A:'Gruppe A: Mexico, Sør-Afrika, Sør-Korea, Tsjekkia',B:'Gruppe B: Canada, Bosnia-H., Qatar, Sveits',C:'Gruppe C: Brasil, Marokko, Haiti, Skottland',D:'Gruppe D: USA, Paraguay, Australia, Tyrkia',E:'Gruppe E: Tyskland, Curaçao, Elfenbenskysten, Ecuador',F:'Gruppe F: Nederland, Japan, Sverige, Tunisia',G:'Gruppe G: Belgia, Egypt, Iran, New Zealand',H:'Gruppe H: Spania, Kapp Verde, Saudi-Arabia, Uruguay',I:'Gruppe I: Frankrike, Senegal, Irak, 🇳🇴 Norge',J:'Gruppe J: Argentina, Algeria, Østerrike, Jordan',K:'Gruppe K: Portugal, DR Kongo, Usbekistan, Colombia',L:'Gruppe L: England, Kroatia, Ghana, Panama'};
 function renderGrpBtns(){
-  document.getElementById('grp-btns').innerHTML=['A','B','C','D','E','F','G','H','I','J','K','L'].map(g=>`<button class="gbtn ${g==='I'?'nor-grp':''} ${g===activeGrp?'on':''}" onclick="selectGrp('${g}',this)">${g==='I'?'🇳🇴 ':''}Gruppe ${g}</button>`).join('');
+  document.getElementById('grp-btns').innerHTML='ABCDEFGHIJKL'.split('').map(g=>`<button class="gbtn ${g==='I'?'nor-grp':''} ${g===activeGrp?'on':''}" onclick="selectGrp('${g}',this)">${g==='I'?'🇳🇴 ':''}Gruppe ${g}</button>`).join('');
 }
 function selectGrp(g,btn){
   activeGrp=g;document.querySelectorAll('.gbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
@@ -523,327 +531,358 @@ function initGrpPanel(){
   renderGrpBtns();
   document.getElementById('grp-label').textContent=GRP_NAMES[activeGrp]||'';
   document.getElementById('res-other-lbl').textContent=`Gruppe ${activeGrp} · Kamper`;
-  renderTable('tbl-other',GROUPS[activeGrp]);
-  renderResults('res-other',GRP_FIXTURES[activeGrp]||[]);
-}
-function renderPlayoff(){
-  const stages=[{title:'32-delsfinale',date:'1–2. jul',count:8},{title:'16-delsfinale',date:'5–6. jul',count:4},{title:'Kvartfinale',date:'9–10. jul',count:2},{title:'Semifinale',date:'13–14. jul',count:1},{title:'Finale',date:'19. jul',count:1}];
-  document.getElementById('bracket').innerHTML=stages.map(s=>`<div class="brnd"><div class="brnd-title">${s.title}</div>${Array(s.count).fill(0).map(()=>`<div class="match tbd"><div class="team-row"><span class="tbd">TBD</span></div><div class="team-row"><span class="tbd">TBD</span></div><div class="match-meta">${s.date} · USA</div></div>`).join('')}</div>`).join('');
+  renderTable('tbl-other',GROUPS[activeGrp]);renderResults('res-other',GRP_FIXTURES[activeGrp]||[]);
 }
 function renderStats(scorers){
   if(!scorers||!scorers.length){
-    document.getElementById('tbl-sc').innerHTML=`<tbody><tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Toppscorerlisten oppdateres når turneringen starter 11. juni</td></tr></tbody>`;
+    document.getElementById('tbl-sc').innerHTML=`<tbody><tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Toppscorerlisten oppdateres fra 11. juni</td></tr></tbody>`;
   } else {
     const H=['#','Spiller','Lag','KP','M','A','P'];
     const head=`<thead><tr>${H.map((h,i)=>`<th style="text-align:${i<=2?'left':'center'}">${h}</th>`).join('')}</tr></thead>`;
-    const body=scorers.map(r=>`<tr class="${r.isN?'nor-row':''}"><td style="color:${r.pos<=3?'#fbbf24':'var(--muted)'}">${r.pos}</td><td>${r.pos===1?'<span class="crown">🏆 </span>':''}${r.player}${r.isN?' 🇳🇴':''}</td><td>${r.team}</td><td style="text-align:center">${r.gp}</td><td style="text-align:center;font-weight:700;color:var(--green)">${r.g}</td><td style="text-align:center">${r.a}</td><td style="text-align:center;font-weight:700">${r.pts}</td></tr>`).join('');
+    const body=scorers.map(r=>`<tr class="${r.isN?'nor-row':''}"><td style="color:${r.pos<=3?'#fbbf24':'var(--muted)'}">${r.pos}</td><td>${r.pos===1?'🏆 ':''}${r.player}${r.isN?' 🇳🇴':''}</td><td>${r.team}</td><td style="text-align:center">${r.gp}</td><td style="text-align:center;font-weight:700;color:var(--green)">${r.g}</td><td style="text-align:center">${r.a}</td><td style="text-align:center;font-weight:700">${r.pts}</td></tr>`).join('');
     document.getElementById('tbl-sc').innerHTML=head+`<tbody>${body}</tbody>`;
   }
-  const norPlayers=[['Erling Haaland','Manchester City','Kaptein'],['Martin Ødegaard','Arsenal',''],['Alexander Sørloth','Atlético Madrid',''],['Antonio Nusa','RB Leipzig',''],['Sander Berge','Burnley','']];
+  const norP=[['Erling Haaland','Manchester City','Kaptein'],['Martin Ødegaard','Arsenal',''],['Alexander Sørloth','Atlético Madrid',''],['Antonio Nusa','RB Leipzig',''],['Sander Berge','Burnley','']];
   const H2=['Spiller','Klubb','KP','M','A','P',''];
   const head2=`<thead><tr>${H2.map((h,i)=>`<th style="text-align:${i<=1?'left':'center'}">${h}</th>`).join('')}</tr></thead>`;
-  const body2=norPlayers.map((r,i)=>`<tr style="${i===0?'background:rgba(239,43,45,.18);border-left:3px solid var(--red)':'border-left:3px solid transparent'}"><td style="font-weight:${i===0?700:400}">${r[0]}</td><td style="font-size:11px;color:var(--muted)">${r[1]}</td><td style="text-align:center;color:var(--muted)">–</td><td style="text-align:center;color:var(--muted)">–</td><td style="text-align:center;color:var(--muted)">–</td><td style="text-align:center;color:var(--muted)">–</td><td style="font-size:11px;color:var(--orange)">${r[2]}</td></tr>`).join('');
+  const body2=norP.map((r,i)=>`<tr style="${i===0?'background:rgba(239,43,45,.18);border-left:3px solid var(--red)':'border-left:3px solid transparent'}"><td style="font-weight:${i===0?700:400}">${r[0]}</td><td style="font-size:11px;color:var(--muted)">${r[1]}</td><td style="text-align:center;color:var(--muted)">–</td><td style="text-align:center;color:var(--muted)">–</td><td style="text-align:center;color:var(--muted)">–</td><td style="text-align:center;color:var(--muted)">–</td><td style="font-size:11px;color:var(--orange)">${r[2]}</td></tr>`).join('');
   document.getElementById('tbl-nor-sc').innerHTML=head2+`<tbody>${body2}</tbody>`;
 }
 
-// ── PREDIKSJON ─────────────────────────────────────────────────────────────────
-
-// Lagdata: [FIFA-rang, form(1-10), VM-erfaring(1-10), spillerkvalitet(1-10), hjemmefordel(0/1)]
-// Kilde: FIFA-ranking nov 2025, form basert på kval + nasjonsliga, erfaring = VM-historikk
-const TD={
-  mexico:        [15,7,8,6,1],
-  'south-africa':[65,6,4,5,0],
-  'south-korea': [23,7,6,6,0],
-  czechia:       [36,7,6,6,0],
-  canada:        [40,7,2,6,1],
-  bosnia:        [65,7,2,6,0],
-  qatar:         [35,5,2,5,0],
-  switzerland:   [20,8,6,7,0],
-  brazil:        [5,7,10,9,0],
-  morocco:       [14,7,5,7,0],
-  haiti:         [83,4,1,4,0],
-  scotland:      [38,7,3,7,0],
-  usa:           [13,8,5,8,1],
-  paraguay:      [61,6,5,5,0],
-  australia:     [22,6,5,6,0],
-  turkey:        [30,8,5,7,0],
-  germany:       [13,8,10,8,0],
-  curacao:       [160,5,1,4,0],
-  'ivory-coast': [40,7,4,7,0],
-  ecuador:       [44,6,3,6,0],
-  netherlands:   [7,8,9,8,0],
-  japan:         [18,9,6,8,0],
-  sweden:        [26,7,7,7,0],
-  tunisia:       [30,5,5,5,0],
-  belgium:       [8,7,7,8,0],
-  egypt:         [52,6,3,6,0],
-  iran:          [21,6,5,6,0],
-  'new-zealand': [99,5,2,5,0],
-  spain:         [2,9,9,9,0],
-  'cape-verde':  [70,7,1,5,0],
-  'saudi-arabia':[56,5,5,5,0],
-  uruguay:       [17,8,9,7,0],
-  france:        [3,8,10,9,0],
-  senegal:       [19,7,4,7,0],
-  iraq:          [58,6,2,5,0],
-  norway:        [29,9,3,7,0],
-  argentina:     [1,9,10,10,0],
-  algeria:       [34,7,5,6,0],
-  austria:       [28,8,4,7,0],
-  jordan:        [87,6,1,5,0],
-  portugal:      [6,8,8,8,0],
-  'dr-congo':    [44,6,3,6,0],
-  uzbekistan:    [75,7,1,5,0],
-  colombia:      [12,9,6,8,0],
-  england:       [4,8,9,9,0],
-  croatia:       [10,7,8,7,0],
-  ghana:         [60,6,5,6,0],
-  panama:        [70,6,2,5,0],
-};
-
-const PRED_GROUPS={
-  A:['mexico','south-africa','south-korea','czechia'],
-  B:['canada','bosnia','qatar','switzerland'],
-  C:['brazil','morocco','haiti','scotland'],
-  D:['usa','paraguay','australia','turkey'],
-  E:['germany','curacao','ivory-coast','ecuador'],
-  F:['netherlands','japan','sweden','tunisia'],
-  G:['belgium','egypt','iran','new-zealand'],
-  H:['spain','cape-verde','saudi-arabia','uruguay'],
-  I:['france','senegal','iraq','norway'],
-  J:['argentina','algeria','austria','jordan'],
-  K:['portugal','dr-congo','uzbekistan','colombia'],
-  L:['england','croatia','ghana','panama'],
-};
-
-// Presets: [rank_w, form_w, exp_w, squad_w, home_w]
-const PRESETS=[
-  {id:'paper', icon:'📊', name:'Papirfavorittene',  desc:'FIFA-rangering og kvalitet bestemmer. Favorittene på papiret vinner.',      w:[8,4,5,8,2]},
-  {id:'form',  icon:'🔥', name:'Formtipperen',      desc:'Hvem er varm akkurat nå? Nyeste resultater og syklus teller mest.',           w:[3,9,3,6,2]},
-  {id:'vet',   icon:'🏆', name:'VM-veteranene',     desc:'Erfaring i store turneringer avgjør. Tradisjonelt sterke nasjoner belønnes.', w:[4,4,9,6,1]},
-  {id:'home',  icon:'🌎', name:'Hjemmemesterskapet',desc:'USA, Canada og Mexico løftes av eget publikum. Hjemmefordel er stor.',        w:[5,5,4,5,9]},
-  {id:'nor',   icon:'🇳🇴', name:'Norgesoptimisten', desc:'Form veier tungt, VM-erfaring lite. Gir Norge og andre "nye" lag en sjanse.',  w:[3,9,1,6,2]},
-];
-
-let currentWeights=[6,6,5,7,2];
-let activePreset=null;
-
-function calcStrength(key,w){
-  const d=TD[key];if(!d) return 0;
-  const[rank,form,exp,squad,home]=d;
-  const rankScore=Math.max(5, 100-(rank-1)*1.4);
-  const total=w[0]+w[1]+w[2]+w[3]+w[4];if(!total) return 50;
-  return (rankScore*w[0] + form*10*w[1] + exp*10*w[2] + squad*10*w[3] + home*100*w[4]) / total;
+// ── Sluttspill-bracket renderer ────────────────────────────────────────────────
+// sim = result from simulateBracket (or null for static preview)
+function slotTeam(slot,matchId,teamSlots,thirdByMatch){
+  if(slot.t==='w') return teamSlots?.[`1${slot.g}`]||null;
+  if(slot.t==='r') return teamSlots?.[`2${slot.g}`]||null;
+  if(slot.t==='3') return thirdByMatch?.[matchId]||null;
+  return null;
 }
+function slotStaticLabel(slot,matchId){
+  if(slot.t==='w') return `1${slot.g}`;
+  if(slot.t==='r') return `2${slot.g}`;
+  if(slot.t==='3') return `3rd ${slot.gs.split('').join('/')}`;
+  return '?';
+}
+function teamRowHTML(key,slotLbl,isWinner,isNorway,strVal){
+  if(!key){
+    return `<div class="r32m"><span class="slot-lbl" style="color:var(--text-faint)">${slotLbl}</span><span class="team-name" style="color:var(--text-faint);font-style:italic">TBD</span></div>`;
+  }
+  const td=TLK(key);const nor=key==='norway';
+  const cls=`r32m${nor?' nor-m':''}${isWinner?' sim-w':key&&!isWinner&&strVal!==undefined?' sim-l':''}`;
+  return `<div class="${cls}"><span class="slot-lbl">${slotLbl}</span><span class="team-name">${td.f} ${td.no}</span>${strVal!==undefined?`<span class="str-val">${strVal.toFixed(0)}</span>`:''}`;
+}
+function renderPlayoff(sim){
+  // Norway preview (static, always)
+  const norPrev=document.getElementById('nor-bracket-preview');
+  norPrev.innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">
+      <div style="background:var(--res-bg);border-radius:8px;padding:10px 12px">
+        <div style="font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:6px">SOM 1I (GRUPPEVINNER)</div>
+        <div>🏟 R32 (M77): 1I vs <b>3rd C/D/F/G/H</b></div>
+        <div style="margin-top:3px;color:var(--muted)">Mulig: Marokko, Skottland, Jordan, Iran…</div>
+        <div style="margin-top:5px;color:var(--muted)">R16: vs vinner M78 (2E vs 2I)</div>
+        <div style="margin-top:2px;color:var(--muted)">KF2 mot: 1A/1L-siden (Mexico/England)</div>
+      </div>
+      <div style="background:rgba(239,43,45,.08);border:1px solid rgba(239,43,45,.25);border-radius:8px;padding:10px 12px">
+        <div style="font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--red);margin-bottom:6px">SOM 2I (ANDREPLASS) ← MEST SANNSYNLIG</div>
+        <div>🏟 R32 (M78): 2I vs <b>2E</b></div>
+        <div style="margin-top:3px;color:var(--muted)">2E = sannsynligvis 🇨🇮 Elfenbenskysten eller 🇪🇨 Ecuador</div>
+        <div style="margin-top:5px;color:var(--muted)">R16: vs vinner M77 (1I=Frankrike vs 3rd)</div>
+        <div style="margin-top:2px;color:var(--muted)">KF2 mot: 1A/1L-siden (Mexico/England)</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px;padding:6px 10px;background:rgba(251,191,36,.06);border-radius:6px">
+      💡 KF2-halvdelen: <b>Mexico · England · Frankrike · Elfenbenskysten/Ecuador · 3 tredjeplasslag</b>. SF1 = KF1-vinner vs KF2-vinner.
+    </div>`;
+
+  // 4 quadrants
+  const quadrantData=[
+    {id:'QF1',label:'KF1',sf:'SF1',ms:['M73','M74','M75','M76'],nor:false},
+    {id:'QF2',label:'KF2',sf:'SF1 · 🇳🇴 NORGES HALVDEL',ms:['M77','M78','M79','M80'],nor:true},
+    {id:'QF3',label:'KF3',sf:'SF2',ms:['M81','M82','M83','M84'],nor:false},
+    {id:'QF4',label:'KF4',sf:'SF2',ms:['M85','M86','M87','M88'],nor:false},
+  ];
+  const r16map={};for(const r of BRACKET.r16)r16map[r.id]={m1:r.m1,m2:r.m2};
+  const r32map={};for(const m of BRACKET.r32)r32map[m.id]=m;
+  const r16forM={};for(const r of BRACKET.r16){r16forM[r.m1]=r.id;r16forM[r.m2]=r.id;}
+  const qfForR16={};for(const q of BRACKET.qf){qfForR16[q.r1]=q.id;qfForR16[q.r2]=q.id;}
+
+  function pod(m1id,m2id,sim){
+    const m1=r32map[m1id],m2=r32map[m2id];
+    const r16id=r16forM[m1id];
+    const r16m=r16map[r16id];
+    const simR32_1=sim?.r32[m1id],simR32_2=sim?.r32[m2id],simR16=sim?.r16[r16id];
+    function row(m,slotKey,simResult){
+      const key=simResult?.[slotKey];
+      const isW=simResult&&simResult.winner===key;
+      const td=key?TLK(key):null;
+      const slot=slotKey==='t1'?m.s1:m.s2;
+      const lbl=slotStaticLabel(slot,m.id);
+      const nor=key==='norway';
+      const cls=`r32m${nor?' nor-m':''}${simResult&&isW?' sim-w':''}${simResult&&!isW&&key?' sim-l':''}`;
+      const strTxt=simResult?`<span class="str-val">${(slotKey==='t1'?simResult.s1:simResult.s2).toFixed(0)}</span>`:'';
+      const teamTxt=td?`${td.f} ${td.no}`:`<span style="color:var(--text-faint);font-style:italic">${lbl}</span>`;
+      return `<div class="${cls}"><span class="slot-lbl">${lbl}</span><span class="team-name">${teamTxt}</span>${strTxt}</div>`;
+    }
+    const r16winner=simR16?TLK(simR16.winner):{f:'',no:'?'};
+    const r16lbl=simR16?`→ 16-del: ${r16winner.f} ${r16winner.no}`:`→ 16-delsfinale: vinner ${m1id} vs vinner ${m2id}`;
+    return `<div class="qpod">
+      <div class="qpod-lbl">${m1id} · ${m2id}</div>
+      ${row(m1,'t1',simR32_1)}${row(m1,'t2',simR32_1)}
+      ${row(m2,'t1',simR32_2)}${row(m2,'t2',simR32_2)}
+      <div class="r16-conn">⤵ ${r16lbl}</div>
+    </div>`;
+  }
+
+  document.getElementById('bracket-outer').innerHTML=quadrantData.map(q=>{
+    const [m1,m2,m3,m4]=q.ms;
+    const simQF=sim?.qf?.[q.id];
+    const qfWinner=simQF?`Predikert KF-vinner: ${disp(simQF.winner)}`:`Vinner KF: TBD`;
+    const sfNote=`→ SF1 (${['QF1','QF2'].includes(q.id)?'mot KF'+(q.id==='QF1'?'2':'1')+'-vinner':'mot KF'+(q.id==='QF3'?'4':'3')+'-vinner'})`;
+    return `<div class="qcard${q.nor?' nor-quad':''}">
+      <div class="qcard-hdr">
+        <span class="qcard-title">${q.nor?'🔴 ':''} ${q.label}</span>
+        <span class="qcard-sf" style="color:${q.nor?'var(--red)':'var(--muted)'}">${q.sf}</span>
+      </div>
+      <div class="bracket-inner">
+        ${pod(m1,m2,sim)}
+        ${pod(m3,m4,sim)}
+      </div>
+      <div class="qf-row">
+        <span style="color:var(--gold);font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">${q.label}</span>
+        <span class="qf-winner">${qfWinner}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Bracket-simulering ────────────────────────────────────────────────────────
+function simulateBracket(groupRankings,thirds,advThirds,w){
+  // Slot-kart: '1A', '2B' osv → team-nøkkel
+  const slots={};
+  for(const[g,ranked] of Object.entries(groupRankings)){
+    slots[`1${g}`]=ranked[0];
+    slots[`2${g}`]=ranked[1];
+  }
+  // Tildel 3.-plasslag til R32-slots (greedy: sterkeste først, gruppen må matche)
+  const thirdByMatch={};const used=new Set();
+  const thirdsRanked=advThirds.map(k=>{const t=thirds.find(x=>x.key===k);return{key:k,grp:t?.grp||'?',str:calcStrength(k,w)};}).sort((a,b)=>b.str-a.str);
+  for(const slot of THIRD_SLOTS){
+    const eli=thirdsRanked.filter(t=>!used.has(t.key)&&slot.gs.includes(t.grp));
+    if(eli.length){thirdByMatch[slot.m]=eli[0].key;used.add(eli[0].key);}
+  }
+  function getTeam(slot,mid){
+    if(slot.t==='w')return slots[`1${slot.g}`]||null;
+    if(slot.t==='r')return slots[`2${slot.g}`]||null;
+    return thirdByMatch[mid]||null;
+  }
+  function sim(t1,t2){
+    const s1=t1?calcStrength(t1,w):0,s2=t2?calcStrength(t2,w):0;
+    return{t1,t2,s1,s2,winner:s1>=s2?t1:t2,loser:s1>=s2?t2:t1};
+  }
+  const r32={},r16={},qf={};
+  for(const m of BRACKET.r32)r32[m.id]=sim(getTeam(m.s1,m.id),getTeam(m.s2,m.id));
+  for(const m of BRACKET.r16)r16[m.id]=sim(r32[m.m1]?.winner,r32[m.m2]?.winner);
+  for(const m of BRACKET.qf)qf[m.id]=sim(r16[m.r1]?.winner,r16[m.r2]?.winner);
+  const sf={SF1:sim(qf.QF1?.winner,qf.QF2?.winner),SF2:sim(qf.QF3?.winner,qf.QF4?.winner)};
+  const final=sim(sf.SF1?.winner,sf.SF2?.winner);
+  const third=sim(sf.SF1?.loser,sf.SF2?.loser);
+  return{r32,r16,qf,sf,final,third,slots,thirdByMatch};
+}
+
+// ── Norges vei gjennom bracketet ──────────────────────────────────────────────
+function findNorwayPath(sim,groupRankings,thirds,advThirds){
+  const norPos=groupRankings.I.indexOf('norway')+1;
+  const isAdv3=norPos===3&&advThirds.includes('norway');
+  const path={norPos,isAdv3,steps:[],finalPlace:null};
+  if(norPos>3||(norPos===3&&!isAdv3)){path.eliminated='gruppe';return path;}
+
+  // Finn Norges R32-kamp
+  let norR32=null;
+  if(norPos===1)norR32='M77';
+  else if(norPos===2)norR32='M78';
+  else norR32=Object.keys(sim.thirdByMatch).find(m=>sim.thirdByMatch[m]==='norway')||null;
+  if(!norR32){path.eliminated='gruppe';return path;}
+
+  const rounds=[
+    {key:'r32',label:'R32'},
+    {key:'r16',label:'16-del'},
+    {key:'qf', label:'Kvartfinale'},
+    {key:'sf', label:'Semifinale'},
+    {key:'final',label:'Finale'},
+  ];
+  let curMatch=norR32;let curRound='r32';
+  const roundSeq=['r32','r16','qf','sf','final'];
+
+  for(const round of roundSeq){
+    let m;
+    if(round==='r32')m=sim.r32[curMatch];
+    else if(round==='r16'){
+      const r16id=BRACKET.r16.find(r=>r.m1===curMatch||r.m2===curMatch)?.id;
+      if(!r16id)break;curMatch=r16id;m=sim.r16[r16id];
+    }else if(round==='qf'){
+      const qfid=BRACKET.r16.find(r=>r.id===curMatch)?.qf;
+      if(!qfid)break;curMatch=qfid;m=sim.qf[qfid];
+    }else if(round==='sf'){
+      const sfid=BRACKET.qf.find(q=>q.id===curMatch)?.sf;
+      if(!sfid)break;curMatch=sfid;m=sim.sf[sfid];
+    }else{
+      m=sim.final;
+    }
+    if(!m)break;
+    const opp=m.t1==='norway'?m.t2:m.t1;
+    const oppStr=m.t1==='norway'?m.s2:m.s1;
+    const norStr=m.t1==='norway'?m.s1:m.s2;
+    const win=m.winner==='norway';
+    const lbl=['r32','r16','qf','sf','final'].indexOf(round);
+    path.steps.push({round:['R32','16-del','Kvartfinale','Semifinale','Finale'][lbl],opp,oppStr:oppStr.toFixed(0),norStr:norStr.toFixed(0),win});
+    if(!win){
+      // 3rd place?
+      if(round==='sf'){const t=sim.third;const to=t.t1==='norway'?t.t2:t.t1;path.steps.push({round:'Bronse',opp:to,win:t.winner==='norway'});}
+      break;
+    }
+    if(round==='final'){path.finalPlace=1;break;}
+  }
+  return path;
+}
+
+// ── Render: Norges vei (prediksjonsboks) ──────────────────────────────────────
+function renderNorwayPathHTML(path){
+  if(path.eliminated==='gruppe'){
+    return `<div class="nor-path-box"><div class="nor-path-title">🇳🇴 Norges predikerte vei</div><div style="color:var(--danger);font-size:13px">Eliminert i gruppespillet (predikert ${path.norPos}. plass i Gruppe I)</div></div>`;
+  }
+  const norPosLabel=path.norPos===1?'1. plass (gruppevinner)':path.norPos===2?'2. plass':path.isAdv3?'3. plass (blant 8 beste)':'3. plass';
+  const lastStep=path.steps[path.steps.length-1];
+  let finalLabel='';
+  if(path.finalPlace===1)finalLabel='🥇 VM-MESTER!';
+  else if(lastStep){
+    const eliminated=!lastStep.win;
+    if(eliminated){
+      const r=lastStep.round;
+      finalLabel=r==='Bronse'?(lastStep.win?'🥉 3. plass':'4. plass'):
+        r==='Finale'?'🥈 2. plass (finalist)':
+        r==='Semifinale'?'Ut i semifinalen – topp 4':
+        r==='Kvartfinale'?'Ut i kvartfinalen – topp 8':
+        r==='16-del'?'Ut i 16-delsfinalen – topp 16':'Ut i R32';
+    }
+  }
+  const stepsHTML=path.steps.map(s=>{
+    const oppd=s.opp?disp(s.opp):'TBD';
+    const cls=s.round==='Bronse'?(s.win?'adv':'elim'):s.win?'adv':'elim';
+    const res=s.win?`<span class="path-result w">✓ VIDERE</span>`:`<span class="path-result l">✗ UTE</span>`;
+    return `<div class="path-step ${cls}"><span class="path-round">${s.round}</span><span class="path-match">vs ${oppd} <span style="font-size:10px;color:var(--muted)">(${s.norStr} vs ${s.oppStr})</span></span>${res}</div>`;
+  }).join('');
+  return `<div class="nor-path-box">
+    <div class="nor-path-title">🇳🇴 Norges predikerte vei · ${finalLabel}</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px">Gruppefase: ${norPosLabel} i Gruppe I</div>
+    <div class="path-steps">${stepsHTML}</div>
+    ${finalLabel?`<div style="margin-top:10px;font-size:13px;font-weight:700;color:var(--gold);text-align:center">${finalLabel}</div>`:''}
+  </div>`;
+}
+
+// ── Prediksjon ────────────────────────────────────────────────────────────────
+const PRESETS=[
+  {id:'paper',icon:'📊',name:'Papirfavorittene',  desc:'FIFA-rangering og kvalitet bestemmer.',          w:[8,4,5,8,2]},
+  {id:'form', icon:'🔥',name:'Formtipperen',       desc:'Hvem er varm nå? Nyeste resultater teller mest.',w:[3,9,3,6,2]},
+  {id:'vet',  icon:'🏆',name:'VM-veteranene',      desc:'VM-erfaring avgjør. Kjente stormakter belønnes.',w:[4,4,9,6,1]},
+  {id:'home', icon:'🌎',name:'Hjemmemesterskapet', desc:'USA, Canada og Mexico løftes av publikum.',      w:[5,5,4,5,9]},
+  {id:'nor',  icon:'🇳🇴',name:'Norgesoptimisten',  desc:'Form veier tungt, VM-erfaring lite. Bra for Norge!',w:[3,9,1,6,2]},
+];
+let currentWeights=[6,6,5,7,2];let activePreset=null;
 
 function initPredictionUI(){
-  // Presets
-  document.getElementById('preset-grid').innerHTML=PRESETS.map(p=>`
-    <div class="pbtn" id="pbtn-${p.id}" onclick="applyPreset('${p.id}')">
-      <div class="pbtn-icon">${p.icon}</div>
-      <div class="pbtn-name">${p.name}</div>
-      <div class="pbtn-desc">${p.desc}</div>
-    </div>`).join('');
-
-  // Sliders
-  const factors=[
-    {id:'rank',label:'FIFA-rangering',desc:'Offisiell FIFA-verdensrangering'},
-    {id:'form',label:'Siste form',desc:'Kval. og nasjonsliga-resultater'},
-    {id:'exp', label:'VM-erfaring',desc:'VM-historikk og prestasjonsnivå'},
-    {id:'squad',label:'Spillerkvalitet',desc:'Samlet lagstyrke / profilspillere'},
-    {id:'home',label:'Hjemmefordel',desc:'USA/Canada/Mexico-bonus'},
-  ];
-  document.getElementById('sliders').innerHTML=factors.map((f,i)=>`
-    <div class="sl-row">
-      <div class="sl-lbl">${f.label}<span>${f.desc}</span></div>
-      <input type="range" id="sl-${f.id}" min="0" max="10" value="${currentWeights[i]}" oninput="onSlider(${i},this.value)">
-      <div class="sl-val" id="slv-${f.id}">${currentWeights[i]}</div>
-    </div>`).join('');
+  document.getElementById('preset-grid').innerHTML=PRESETS.map(p=>`<div class="pbtn" id="pbtn-${p.id}" onclick="applyPreset('${p.id}')"><div class="pbtn-icon">${p.icon}</div><div class="pbtn-name">${p.name}</div><div class="pbtn-desc">${p.desc}</div></div>`).join('');
+  const factors=[{id:'rank',l:'FIFA-rangering',d:'Offisiell verdensrangering'},{id:'form',l:'Siste form',d:'Kval. og turneringsresultater'},{id:'exp',l:'VM-erfaring',d:'VM-historikk'},{id:'squad',l:'Spillerkvalitet',d:'Lagstyrke / stjerner'},{id:'home',l:'Hjemmefordel',d:'USA/Canada/Mexico-bonus'}];
+  document.getElementById('sliders').innerHTML=factors.map((f,i)=>`<div class="sl-row"><div class="sl-lbl">${f.l}<span>${f.d}</span></div><input type="range" id="sl-${f.id}" min="0" max="10" value="${currentWeights[i]}" oninput="onSlider(${i},this.value)"><div class="sl-val" id="slv-${f.id}">${currentWeights[i]}</div></div>`).join('');
 }
-
 function applyPreset(id){
-  const p=PRESETS.find(x=>x.id===id);if(!p) return;
-  activePreset=id;
-  document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('on'));
-  document.getElementById('pbtn-'+id)?.classList.add('on');
+  const p=PRESETS.find(x=>x.id===id);if(!p)return;
+  activePreset=id;document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('on'));document.getElementById('pbtn-'+id)?.classList.add('on');
   currentWeights=[...p.w];
-  ['rank','form','exp','squad','home'].forEach((k,i)=>{
-    const sl=document.getElementById('sl-'+k);
-    const vl=document.getElementById('slv-'+k);
-    if(sl) sl.value=currentWeights[i];
-    if(vl) vl.textContent=currentWeights[i];
-  });
+  ['rank','form','exp','squad','home'].forEach((k,i)=>{const sl=document.getElementById('sl-'+k);const vl=document.getElementById('slv-'+k);if(sl)sl.value=currentWeights[i];if(vl)vl.textContent=currentWeights[i];});
 }
-
 function onSlider(i,v){
   currentWeights[i]=parseInt(v)||0;
   const keys=['rank','form','exp','squad','home'];
-  const vl=document.getElementById('slv-'+keys[i]);
-  if(vl) vl.textContent=v;
-  // Deselect preset if manually changed
-  if(activePreset){
-    const p=PRESETS.find(x=>x.id===activePreset);
-    if(p&&JSON.stringify(p.w)!==JSON.stringify(currentWeights)){
-      activePreset=null;
-      document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('on'));
-    }
-  }
+  const vl=document.getElementById('slv-'+keys[i]);if(vl)vl.textContent=v;
+  if(activePreset){const p=PRESETS.find(x=>x.id===activePreset);if(p&&JSON.stringify(p.w)!==JSON.stringify(currentWeights)){activePreset=null;document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('on'));}}
 }
 
 function generatePrediction(){
   const w=currentWeights;
-
-  // 1. Rank teams in each group
+  // 1. Ranger grupper
   const groupRankings={};
-  const thirds=[];
-
-  for(const[grpKey,teams] of Object.entries(PRED_GROUPS)){
-    const ranked=[...teams].sort((a,b)=>calcStrength(b,w)-calcStrength(a,w));
-    groupRankings[grpKey]=ranked;
-    const thirdKey=ranked[2];
-    const td=TLK(thirdKey);
-    thirds.push({key:thirdKey,grp:grpKey,display:`${td.f} ${td.no}`,str:calcStrength(thirdKey,w)});
-  }
-
-  // 2. Sort thirds, top 8 advance
-  thirds.sort((a,b)=>b.str-a.str);
+  for(const[g,teams] of Object.entries(PRED_GROUPS)){groupRankings[g]=[...teams].sort((a,b)=>calcStrength(b,w)-calcStrength(a,w));}
+  // 2. 3.-plasslagene
+  const thirds=Object.entries(groupRankings).map(([g,ranked])=>{const k=ranked[2];return{key:k,grp:g,str:calcStrength(k,w),display:disp(k)};}).sort((a,b)=>b.str-a.str);
   const advThirds=thirds.slice(0,8).map(t=>t.key);
-
-  // 3. All 32 qualifiers
-  const qualifiers=[];
-  for(const[grpKey,ranked] of Object.entries(groupRankings)){
-    qualifiers.push({key:ranked[0],grp:grpKey,pos:1,str:calcStrength(ranked[0],w)});
-    qualifiers.push({key:ranked[1],grp:grpKey,pos:2,str:calcStrength(ranked[1],w)});
-  }
-  thirds.slice(0,8).forEach(t=>qualifiers.push({key:t.key,grp:t.grp,pos:3,str:t.str}));
-
-  // 4. Top 4 of all qualifiers = semis
-  const sortedQ=[...qualifiers].sort((a,b)=>b.str-a.str);
-  const semis=sortedQ.slice(0,4);
-
-  // Render output
-  renderPredOutput(groupRankings,thirds,advThirds,semis,w);
+  // 3. Simuler bracket
+  const sim=simulateBracket(groupRankings,thirds,advThirds,w);
+  // 4. Finn Norges vei
+  const norPath=findNorwayPath(sim,groupRankings,thirds,advThirds);
+  // 5. Oppdater sluttspill-fanen
+  renderPlayoff(sim);
+  // 6. Render prediksjonutdata
+  renderPredOutput(groupRankings,thirds,sim,norPath,w);
 }
 
-function renderPredOutput(groupRankings,thirds,advThirds,semis,w){
-  const out=document.getElementById('pred-output');
-  out.style.display='flex';
-
-  // ── Norge-analyse ──
-  const norRank=groupRankings.I.indexOf('norway')+1;
-  const norStr=calcStrength('norway',w);
-  const norAdv=norRank<=2||advThirds.includes('norway');
-  const norStrs=calcStrength('france',w);
-  const norStrSen=calcStrength('senegal',w);
-  const norStrIraq=calcStrength('iraq',w);
-
-  const norHTML=`<div class="nor-pred-box">
-    <div class="nor-pred-title">🇳🇴 Norges predikerte gruppefase</div>
-    <div class="nor-pred-row"><span>Predikert plassering i Gruppe I:</span><span class="nor-pred-val">${norRank}. plass</span></div>
-    <div class="nor-pred-row"><span>Norges styrke-score:</span><span class="nor-pred-val">${norStr.toFixed(1)}</span></div>
-    <div class="nor-pred-row"><span>Frankrike:</span><span class="nor-pred-val">${norStrs.toFixed(1)}</span></div>
-    <div class="nor-pred-row"><span>Senegal:</span><span class="nor-pred-val">${norStrSen.toFixed(1)}</span></div>
-    <div class="nor-pred-row"><span>Irak:</span><span class="nor-pred-val">${norStrIraq.toFixed(1)}</span></div>
-    <div class="nor-pred-row"><span>Videre til R32?</span><span class="nor-pred-val" style="color:${norAdv?'var(--green)':'var(--danger)'}">${norAdv?'✓ Ja':'✗ Nei'}</span></div>
-    <div class="nor-pred-note">
-      ${norRank===1?'Norge forventes å vinne Gruppe I etter denne modellen – bemerkelsesverdig!'
-        :norRank===2?'Norge forventes å gå videre som nr. 2 i gruppen.'
-        :norRank===3&&advThirds.includes('norway')?'Norge på 3. plass, men sterk nok til å gå videre blant de 8 beste.'
-        :norRank===3?'Norge på 3. plass – usikkert om de er blant de 8 beste 3.-plassene.'
-        :'Modellen spår at Norge ikke går videre. Haaland & co. kan endre dette!'}
-      ${w[1]>=7?' Høy form-vekting hjelper Norge (perfekt kval.).'  :''}
-      ${w[2]<=2?' Lav erfaring-vekting hjelper Norge (kun 4. VM).' :''}
-    </div>
-  </div>`;
-
-  // ── Gruppe-tabeller ──
+function renderPredOutput(groupRankings,thirds,sim,norPath,w){
+  const out=document.getElementById('pred-output');out.style.display='flex';
+  // Gruppe-tabeller
   const grpHTML=Object.entries(groupRankings).map(([g,ranked])=>{
-    const teams=ranked.map((k,i)=>{
-      const td=TLK(k);
-      const str=calcStrength(k,w);
-      const isN=k==='norway';
-      const cls=i===0?'t1':i===1?'t2':i===2?'t3':'t4';
-      const qBadge=i===0?'<span class="mini-q mq-1">1.</span>':i===1?'<span class="mini-q mq-2">2.</span>':i===2?'<span class="mini-q mq-3">3.</span>':'<span class="mini-q mq-out">4.</span>';
-      return `<div class="mini-team ${cls}${isN?' nor':''}"><span class="mini-pos">${i+1}</span><span class="mini-name">${td.f} ${td.no}</span>${qBadge}</div>`;
-    }).join('');
-    return `<div class="mini-group"><div class="mini-grp-hdr">Gruppe ${g}</div>${teams}</div>`;
+    return `<div class="mini-group"><div class="mini-grp-hdr">Gruppe ${g}</div>${ranked.map((k,i)=>{const td=TLK(k);const nor=k==='norway';const cls=`mini-team t${i+1}${nor?' nor':''}`;const qB=i===0?'<span class="mini-q mq-1">1</span>':i===1?'<span class="mini-q mq-2">2</span>':i===2?'<span class="mini-q mq-3">3</span>':'<span class="mini-q mq-out">4</span>';return `<div class="${cls}"><span class="mini-pos">${i+1}</span><span class="mini-name">${td.f} ${td.no}</span>${qB}</div>`;}).join('')}</div>`;
   }).join('');
-
-  // ── 3. plasser ──
-  const thirdHTML=thirds.map((t,i)=>{
-    const adv=i<8;
-    const td=TLK(t.key);
-    return `<div class="third-card ${adv?'adv':'out'}">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div class="third-name">${t.display}</div>
-        ${adv?'<span class="bdg bdg-q3">Videre</span>':'<span class="bdg bdg-r">Ute</span>'}
-      </div>
-      <div class="third-score">Gruppe ${t.grp} · Score: ${t.str.toFixed(1)}</div>
-    </div>`;
-  }).join('');
-
-  // ── Semifinalister ──
+  // 3.-plasser
+  const thirdHTML=thirds.map((t,i)=>{const adv=i<8;return `<div class="third-card ${adv?'adv':'out'}"><div style="display:flex;justify-content:space-between"><span style="font-weight:600">${t.display}</span>${adv?'<span class="bdg bdg-q3">Videre</span>':'<span class="bdg bdg-r">Ute</span>'}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Gruppe ${t.grp} · Score: ${t.str.toFixed(1)}</div></div>`;}).join('');
+  // Semis fra bracket
   const medals=['🥇','🥈','🥉','4️⃣'];
-  const placeNames=['VM-vinner','VM-runner-up','3. plass','4. plass'];
-  const semisHTML=semis.map((s,i)=>{
-    const td=TLK(s.key);
-    const isN=s.key==='norway';
-    return `<div class="semi-card s${i+1}${isN?' nor-semi':''}">
-      <div class="semi-medal">${medals[i]}</div>
-      <div class="semi-place">${placeNames[i]}</div>
-      <div class="semi-team">${td.f}</div>
-      <div class="semi-name">${td.no}</div>
-      <div class="semi-str">Score: ${s.str.toFixed(1)} · Gruppe ${s.grp}</div>
-    </div>`;
+  const placeNames=['VM-mester','Finalist','3. plass','4. plass'];
+  const semis=[
+    {key:sim.final.winner,place:0},{key:sim.final.loser,place:1},
+    {key:sim.third.winner,place:2},{key:sim.third.loser,place:3}
+  ];
+  const semisHTML=semis.map(s=>{
+    const td=TLK(s.key||'');const nor=s.key==='norway';
+    return `<div class="semi-card s${s.place+1}${nor?' nor-semi':''}"><div class="semi-medal">${medals[s.place]}</div><div class="semi-place">${placeNames[s.place]}</div><div class="semi-team">${td.f}</div><div class="semi-name">${td.no||'TBD'}</div><div class="semi-score">${s.key?calcStrength(s.key,w).toFixed(1):''}</div></div>`;
   }).join('');
-
-  // ── Kopier-tekst ──
-  function buildCopyText(){
-    const grpLines=Object.entries(groupRankings).map(([g,ranked])=>{
-      const t1=TLK(ranked[0]),t2=TLK(ranked[1]),t3=TLK(ranked[2]);
-      return `Gruppe ${g}: ${t1.no}, ${t2.no} (3. plass: ${t3.no})`;
-    }).join('\n');
-    const thirdLine='8 beste 3.-plasser: '+thirds.slice(0,8).map(t=>TLK(t.key).no).join(', ');
-    const semifLine=semis.map((s,i)=>`${medals[i]} ${TLK(s.key).no}`).join('\n');
-    return `⚽ VM 2026 – Min prediksjon\n\nGRUPPESPILL:\n${grpLines}\n\n${thirdLine}\n\nSEMIFINALISTER OG SLUTTPLASSERING:\n${semifLine}`;
+  // Kopier-tekst
+  function buildCopy(){
+    const grpLines=Object.entries(groupRankings).map(([g,r])=>`Gruppe ${g}: ${TLK(r[0]).no}, ${TLK(r[1]).no} (3.plass: ${TLK(r[2]).no})`).join('\n');
+    const t3=thirds.slice(0,8).map(t=>`${t.display} (Gr.${t.grp})`).join(', ');
+    const pathLines=norPath.steps.map(s=>`  ${s.round}: vs ${s.opp?disp(s.opp):'TBD'} → ${s.win?'VIDERE':'UTE'}`).join('\n');
+    const places=semis.map(s=>`${medals[s.place]} ${TLK(s.key||'').no}`).join(' · ');
+    return `⚽ VM 2026 – Min prediksjon\n\nGRUPPESPILL:\n${grpLines}\n\n8 BESTE 3.-PLASSER:\n${t3}\n\n🇳🇴 NORGES VEI:\n${norPath.eliminated==='gruppe'?`Ut i gruppespillet (${norPath.norPos}. plass)`:pathLines}\n\nSLUTTPLASSERING 1–4:\n${places}`;
   }
-
   out.innerHTML=`
-    <div class="card">${norHTML}</div>
+    <div class="card nc">${renderNorwayPathHTML(norPath)}</div>
     <div class="card">
-      <div class="lbl" style="color:var(--blue)">📋 Predikerte gruppevinnere og 2.-plasser</div>
+      <div class="lbl" style="color:var(--blue)">📋 Predikerte grupperesultater</div>
       <div class="groups-grid">${grpHTML}</div>
     </div>
     <div class="card">
-      <div class="lbl" style="color:#d97706">🎯 8 beste 3.-plasser som går videre (av 12)</div>
+      <div class="lbl" style="color:#d97706">🎯 De 8 beste 3.-plasslagene (av 12)</div>
       <div class="third-grid">${thirdHTML}</div>
     </div>
     <div class="card" style="border-color:rgba(251,191,36,.3)">
-      <div class="lbl" style="color:var(--gold)">🏆 Predikert sluttplassering (1–4)</div>
+      <div class="lbl" style="color:var(--gold)">🏆 Predikert sluttplassering 1–4</div>
+      <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Basert på fullstendig bracket-simulering R32 → R16 → KF → SF → Finale</p>
       <div class="semis-grid">${semisHTML}</div>
     </div>
     <div class="card">
       <div class="lbl" style="color:var(--blue)">📤 Kopier til konkurransen</div>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Klar til å lime inn i konkurranseskjemaet:</p>
-      <pre id="copy-text" style="font-size:11px;color:var(--text-dim);background:var(--row-even);padding:12px;border-radius:8px;overflow-x:auto;white-space:pre-wrap;line-height:1.6">${buildCopyText()}</pre>
+      <pre id="copy-text" style="font-size:11px;color:var(--text-dim);background:var(--row-even);padding:12px;border-radius:8px;overflow-x:auto;white-space:pre-wrap;line-height:1.6">${buildCopy()}</pre>
       <button class="copy-btn" id="copy-btn" onclick="doCopy()">📋 Kopier prediksjon til utklippstavle</button>
     </div>`;
 }
 
 function doCopy(){
   const text=document.getElementById('copy-text')?.textContent||'';
-  navigator.clipboard?.writeText(text).then(()=>{
-    const btn=document.getElementById('copy-btn');
-    btn.textContent='✓ Kopiert!';btn.classList.add('done');
-    setTimeout(()=>{btn.textContent='📋 Kopier prediksjon til utklippstavle';btn.classList.remove('done');},2500);
-  }).catch(()=>{
-    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
-    const btn=document.getElementById('copy-btn');btn.textContent='✓ Kopiert!';btn.classList.add('done');
-    setTimeout(()=>{btn.textContent='📋 Kopier prediksjon til utklippstavle';btn.classList.remove('done');},2500);
-  });
+  const btn=document.getElementById('copy-btn');
+  navigator.clipboard?.writeText(text).catch(()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);});
+  btn.textContent='✓ Kopiert!';btn.classList.add('done');
+  setTimeout(()=>{btn.textContent='📋 Kopier prediksjon til utklippstavle';btn.classList.remove('done');},2500);
 }
 
-// ── Tab ───────────────────────────────────────────────────────────────────────
 function tab(id,btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
@@ -851,11 +890,9 @@ function tab(id,btn){
   btn.classList.add('on');
 }
 
-// ── Oppdater ──────────────────────────────────────────────────────────────────
 async function doRefresh(){
   const btn=document.getElementById('rbtn'),msg=document.getElementById('msg');
-  btn.disabled=true;btn.textContent='⟳ Henter…';
-  msg.className='msg';msg.textContent='Henter fra Wikipedia…';
+  btn.disabled=true;btn.textContent='⟳ Henter…';msg.className='msg';msg.textContent='Henter…';
   const log=[];
   for(const g of 'ABCDEFGHIJKL'.split('')){
     try{
@@ -863,31 +900,28 @@ async function doRefresh(){
       const st=parseStandings(doc);
       if(st&&st.length>=4){
         LIVE_GROUPS[g]=st;
-        if(g==='I'){renderHero(st);renderTable('tbl-i',st);document.getElementById('i-src').textContent='(Wikipedia)';const res=parseResultsHTML(doc);if(res&&res.length>0){renderResults('res-i',res);document.getElementById('r-src').textContent='(Wikipedia)';}log.push('I ✓');}
-        if(g===activeGrp){renderTable('tbl-other',st);const res=parseResultsHTML(doc);if(res&&res.length>0)renderResults('res-other',res);}
+        if(g==='I'){renderHero(st);renderTable('tbl-i',st);document.getElementById('i-src').textContent='(Wikipedia)';const res=parseResultsHTML(doc);if(res?.length>0){renderResults('res-i',res);document.getElementById('r-src').textContent='(Wikipedia)';}log.push('I ✓');}
+        if(g===activeGrp){renderTable('tbl-other',st);const res=parseResultsHTML(doc);if(res?.length>0)renderResults('res-other',res);}
       }
     }catch(e){}
   }
   try{
-    const doc=await fetchWikiHTML('2026_FIFA_World_Cup');
-    const scorers=[];
+    const doc=await fetchWikiHTML('2026_FIFA_World_Cup');const scorers=[];
     for(const tbl of doc.querySelectorAll('table.wikitable')){
       const hdr=[...(tbl.querySelector('tr')?.querySelectorAll('th')||[])].map(th=>th.textContent.trim().toUpperCase());
-      if(!hdr.some(h=>h==='G')||!hdr.some(h=>h==='PLAYER'||h==='NAME')) continue;
+      if(!hdr.some(h=>h==='G')||!hdr.some(h=>h==='PLAYER'||h==='NAME'))continue;
       for(const tr of tbl.querySelectorAll('tbody tr')){
-        const cells=[...tr.querySelectorAll('td,th')];if(cells.length<5) continue;
+        const cells=[...tr.querySelectorAll('td,th')];if(cells.length<5)continue;
         const gt=i=>i<cells.length?cells[i].textContent.trim().replace(/\[.*?\]/g,''):'';
-        const pli=hdr.findIndex(h=>h==='PLAYER'||h==='NAME');
-        const gi=hdr.findIndex(h=>h==='G');
-        const ai=hdr.findIndex(h=>h==='A');
-        const ti=hdr.findIndex(h=>h==='TEAM'||h==='COUNTRY');
-        const gpi=hdr.findIndex(h=>h==='GP'||h==='GMS');
-        if(pli<0||gi<0) continue;
-        const player=gt(pli);const g_=parseInt(gt(gi))||0;if(!player||!g_) continue;
+        const pli=hdr.findIndex(h=>h==='PLAYER'||h==='NAME'),gi=hdr.findIndex(h=>h==='G'),
+              ai=hdr.findIndex(h=>h==='A'),ti=hdr.findIndex(h=>h==='TEAM'||h==='COUNTRY'),
+              gpi=hdr.findIndex(h=>h==='GP'||h==='GMS');
+        if(pli<0||gi<0)continue;
+        const player=gt(pli);const g_=parseInt(gt(gi))||0;if(!player||!g_)continue;
         const teamT=gt(ti>=0?ti:0);const td=TL(teamT);
         scorers.push({pos:scorers.length+1,player,team:`${td.f} ${td.no}`,gp:parseInt(gt(gpi>=0?gpi:0))||0,g:g_,a:parseInt(gt(ai>=0?ai:0))||0,pts:g_+(parseInt(gt(ai>=0?ai:0))||0),isN:isNor(teamT)});
       }
-      if(scorers.length>=5) break;
+      if(scorers.length>=5)break;
     }
     if(scorers.length>=3){renderStats(scorers);document.getElementById('st-src').textContent='(Wikipedia)';log.push('stats ✓');}
     else renderStats(null);
@@ -896,11 +930,10 @@ async function doRefresh(){
   document.getElementById('upd').textContent=now;
   const ok=Object.keys(LIVE_GROUPS).length>0;
   msg.className='msg '+(ok?'ok':'warn');
-  msg.textContent=ok?`✓ Oppdatert: ${log.join(', ')}`:'⚠ Wikipedia utilgjengelig – viser planlagte data';
+  msg.textContent=ok?`✓ ${log.join(', ')}`:'⚠ Wikipedia utilgjengelig – viser planlagte data';
   btn.disabled=false;btn.textContent='⟳ Oppdater';
 }
 
-// ── Tema ──────────────────────────────────────────────────────────────────────
 function toggleTheme(){
   const light=document.body.classList.toggle('light');
   document.getElementById('tbtn').textContent=light?'🌑':'🌙';
@@ -914,10 +947,10 @@ renderTable('tbl-i',GROUPS.I);
 renderNorSchedule();
 renderResults('res-i',GRP_I_RES);
 initGrpPanel();
-renderPlayoff();
+renderPlayoff(null);
 renderStats(null);
 initPredictionUI();
-document.getElementById('upd').textContent='Forhåndsvisning · 25. mai 2026';
+document.getElementById('upd').textContent='Forhåndsvisning · 26. mai 2026';
 doRefresh();
 </script>
 </body>
