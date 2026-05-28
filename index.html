@@ -368,40 +368,53 @@ let activeGrp='A';
 // ── Offisiell R32-bracket (FIFA Annex C) ──────────────────────────────────────
 // Kilde: FIFA knockout-stage bracket schedule, verifisert mot gamblingcalc.com
 // R32 matchnumre M73–M88; R16 M89–M96; KF M97–M100; SF M101–M102; Finale M104
+// Offisielt FIFA-bracket (verifisert mot FIFA kampprogrammet):
+// R16 M89=W74vsW77, M90=W73vsW75, M91=W76vsW78(NORGE!), M92=W79vsW80
+// M93=W83vsW84, M94=W81vsW82, M95=W86vsW88, M96=W85vsW87
+// → Frankrike(1I via M77→M89→KF97→SF1) og Norge(2I via M78→M91→KF99→SF2)
+//   kan KUN møtes i FINALEN (M104)!
 const BRACKET={
   r32:[
-    // KF1-halvdel
-    {id:'M73',s1:{t:'r',g:'A'},s2:{t:'r',g:'B'},        r16:'R16a'},
-    {id:'M74',s1:{t:'w',g:'E'},s2:{t:'3',gs:'ABCDF'},   r16:'R16a'},
-    {id:'M75',s1:{t:'w',g:'F'},s2:{t:'r',g:'C'},        r16:'R16b'},
-    {id:'M76',s1:{t:'w',g:'C'},s2:{t:'r',g:'F'},        r16:'R16b'},
-    // KF2-halvdel – NORGES HALVDEL
-    {id:'M77',s1:{t:'w',g:'I'},s2:{t:'3',gs:'CDFGH'},   r16:'R16c',nor:true},
-    {id:'M78',s1:{t:'r',g:'E'},s2:{t:'r',g:'I'},        r16:'R16c',nor:true},
-    {id:'M79',s1:{t:'w',g:'A'},s2:{t:'3',gs:'CEFHI'},   r16:'R16d'},
-    {id:'M80',s1:{t:'w',g:'L'},s2:{t:'3',gs:'EHIJK'},   r16:'R16d'},
-    // KF3-halvdel
-    {id:'M81',s1:{t:'w',g:'D'},s2:{t:'3',gs:'BEFIJ'},   r16:'R16e'},
-    {id:'M82',s1:{t:'w',g:'G'},s2:{t:'3',gs:'AEHIJ'},   r16:'R16e'},
-    {id:'M83',s1:{t:'r',g:'K'},s2:{t:'r',g:'L'},        r16:'R16f'},
-    {id:'M84',s1:{t:'w',g:'H'},s2:{t:'r',g:'J'},        r16:'R16f'},
-    // KF4-halvdel
-    {id:'M85',s1:{t:'w',g:'B'},s2:{t:'3',gs:'EFGIJ'},   r16:'R16g'},
-    {id:'M86',s1:{t:'r',g:'D'},s2:{t:'r',g:'G'},        r16:'R16g'},
-    {id:'M87',s1:{t:'w',g:'J'},s2:{t:'r',g:'H'},        r16:'R16h'},
-    {id:'M88',s1:{t:'w',g:'K'},s2:{t:'3',gs:'DEIJL'},   r16:'R16h'},
+    // SF1-halvdel / KF97-siden: Frankrike, Tyskland, Brasil, Nederland
+    {id:'M74',s1:{t:'w',g:'E'},s2:{t:'3',gs:'ABCDF'},   r16:'M89'},  // Tyskland/3rd
+    {id:'M77',s1:{t:'w',g:'I'},s2:{t:'3',gs:'CDFGH'},   r16:'M89'},  // Frankrike/3rd ← FRA
+    {id:'M73',s1:{t:'r',g:'A'},s2:{t:'r',g:'B'},        r16:'M90'},
+    {id:'M75',s1:{t:'w',g:'F'},s2:{t:'r',g:'C'},        r16:'M90'},
+    // SF2-halvdel / KF99-siden: NORGES VEI
+    {id:'M76',s1:{t:'w',g:'C'},s2:{t:'r',g:'F'},        r16:'M91'},  // Brasil/Sverige
+    {id:'M78',s1:{t:'r',g:'E'},s2:{t:'r',g:'I'},        r16:'M91',nor:true}, // 2E vs Norge ← NOR
+    {id:'M79',s1:{t:'w',g:'A'},s2:{t:'3',gs:'CEFHI'},   r16:'M92'},  // Mexico
+    {id:'M80',s1:{t:'w',g:'L'},s2:{t:'3',gs:'EHIJK'},   r16:'M92'},  // England
+    // SF1-halvdel / KF98-siden: USA, Spania, Belgia
+    {id:'M83',s1:{t:'r',g:'K'},s2:{t:'r',g:'L'},        r16:'M93'},
+    {id:'M84',s1:{t:'w',g:'H'},s2:{t:'r',g:'J'},        r16:'M93'},  // Spania/Uruguay
+    {id:'M81',s1:{t:'w',g:'D'},s2:{t:'3',gs:'BEFIJ'},   r16:'M94'},  // USA
+    {id:'M82',s1:{t:'w',g:'G'},s2:{t:'3',gs:'AEHIJ'},   r16:'M94'},  // Belgia
+    // SF2-halvdel / KF100-siden: Argentina, Canada
+    {id:'M86',s1:{t:'r',g:'D'},s2:{t:'r',g:'G'},        r16:'M95'},
+    {id:'M88',s1:{t:'w',g:'K'},s2:{t:'3',gs:'DEIJL'},   r16:'M95'},  // Colombia
+    {id:'M85',s1:{t:'w',g:'B'},s2:{t:'3',gs:'EFGIJ'},   r16:'M96'},  // Canada
+    {id:'M87',s1:{t:'w',g:'J'},s2:{t:'r',g:'H'},        r16:'M96'},  // Argentina
   ],
   r16:[
-    {id:'R16a',m1:'M73',m2:'M74',qf:'QF1'},{id:'R16b',m1:'M75',m2:'M76',qf:'QF1'},
-    {id:'R16c',m1:'M77',m2:'M78',qf:'QF2',nor:true},{id:'R16d',m1:'M79',m2:'M80',qf:'QF2'},
-    {id:'R16e',m1:'M81',m2:'M82',qf:'QF3'},{id:'R16f',m1:'M83',m2:'M84',qf:'QF3'},
-    {id:'R16g',m1:'M85',m2:'M86',qf:'QF4'},{id:'R16h',m1:'M87',m2:'M88',qf:'QF4'},
+    // KF97 → SF1: Frankrike-halvdelen
+    {id:'M89',m1:'M74',m2:'M77',qf:'QF97'},   // FRA-halvdel R16
+    {id:'M90',m1:'M73',m2:'M75',qf:'QF97'},
+    // KF99 → SF2: NORGES halvdel
+    {id:'M91',m1:'M76',m2:'M78',qf:'QF99',nor:true}, // Norge R16!
+    {id:'M92',m1:'M79',m2:'M80',qf:'QF99'},
+    // KF98 → SF1: USA/Spania-halvdel
+    {id:'M93',m1:'M83',m2:'M84',qf:'QF98'},
+    {id:'M94',m1:'M81',m2:'M82',qf:'QF98'},
+    // KF100 → SF2: Argentina/Canada-halvdel
+    {id:'M95',m1:'M86',m2:'M88',qf:'QF100'},
+    {id:'M96',m1:'M85',m2:'M87',qf:'QF100'},
   ],
   qf:[
-    {id:'QF1',r1:'R16a',r2:'R16b',sf:'SF1'},
-    {id:'QF2',r1:'R16c',r2:'R16d',sf:'SF1',nor:true},
-    {id:'QF3',r1:'R16e',r2:'R16f',sf:'SF2'},
-    {id:'QF4',r1:'R16g',r2:'R16h',sf:'SF2'},
+    {id:'QF97', r1:'M89',r2:'M90', sf:'SF1'},        // FRA-siden
+    {id:'QF98', r1:'M93',r2:'M94', sf:'SF1'},        // USA/Spania-siden
+    {id:'QF99', r1:'M91',r2:'M92', sf:'SF2',nor:true}, // NORGES KF
+    {id:'QF100',r1:'M95',r2:'M96', sf:'SF2'},        // ARG/CAN-siden
   ],
 };
 const THIRD_SLOTS=[
@@ -587,20 +600,26 @@ function renderPlayoff(sim){
         <div style="font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--red);margin-bottom:6px">SOM 2I (ANDREPLASS) ← MEST SANNSYNLIG</div>
         <div>🏟 R32 (M78): 2I vs <b>2E</b></div>
         <div style="margin-top:3px;color:var(--muted)">2E = sannsynligvis 🇨🇮 Elfenbenskysten eller 🇪🇨 Ecuador</div>
-        <div style="margin-top:5px;color:var(--muted)">R16: vs vinner M77 (1I=Frankrike vs 3rd)</div>
-        <div style="margin-top:2px;color:var(--muted)">KF2 mot: 1A/1L-siden (Mexico/England)</div>
+        <div style="margin-top:5px;color:var(--muted)">R16 (M91): vs vinner M76 = 🇧🇷 Brasil (1C) eller 2F</div>
+        <div style="margin-top:2px;color:var(--muted)">KF (QF99): vs Mexico- eller England-siden</div>
+        <div style="margin-top:2px;color:var(--muted)">SF2 → Finale mot eventuelt Frankrike</div>
       </div>
     </div>
-    <div style="font-size:11px;color:var(--muted);margin-top:8px;padding:6px 10px;background:rgba(251,191,36,.06);border-radius:6px">
-      💡 KF2-halvdelen: <b>Mexico · England · Frankrike · Elfenbenskysten/Ecuador · 3 tredjeplasslag</b>. SF1 = KF1-vinner vs KF2-vinner.
-    </div>`;
+    <div style="font-size:11px;color:var(--gold);margin-top:8px;padding:7px 11px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:6px">
+      🏆 <b>Frankrike og Norge er i motsatte SF-halvdeler og kan KUN møtes i FINALEN (19. juli).</b> Norges vei: R32 vs 2E → R16 vs Brasil → KF vs Mexico/England → SF vs Argentina/Canada.
+    </div>`
 
-  // 4 quadrants
+  // 4 kvartfinale-sider organisert etter faktisk bracket (verifisert mot FIFA-program)
+  // SF1: KF97-vinner vs KF98-vinner  |  SF2: KF99-vinner vs KF100-vinner
   const quadrantData=[
-    {id:'QF1',label:'KF1',sf:'SF1',ms:['M73','M74','M75','M76'],nor:false},
-    {id:'QF2',label:'KF2',sf:'SF1 · 🇳🇴 NORGES HALVDEL',ms:['M77','M78','M79','M80'],nor:true},
-    {id:'QF3',label:'KF3',sf:'SF2',ms:['M81','M82','M83','M84'],nor:false},
-    {id:'QF4',label:'KF4',sf:'SF2',ms:['M85','M86','M87','M88'],nor:false},
+    {id:'QF97', label:'KF97 → SF1',sf:'Frankrike · Tyskland · Brasil · Nederland',
+     ms:['M74','M77','M73','M75'],nor:false},
+    {id:'QF99', label:'KF99 → SF2',sf:'🇳🇴 NORGES HALVDEL',
+     ms:['M76','M78','M79','M80'],nor:true},
+    {id:'QF98', label:'KF98 → SF1',sf:'USA · Spania · Belgia · Uruguay',
+     ms:['M83','M84','M81','M82'],nor:false},
+    {id:'QF100',label:'KF100 → SF2',sf:'Argentina · Canada · Colombia',
+     ms:['M86','M88','M85','M87'],nor:false},
   ];
   const r16map={};for(const r of BRACKET.r16)r16map[r.id]={m1:r.m1,m2:r.m2};
   const r32map={};for(const m of BRACKET.r32)r32map[m.id]=m;
@@ -637,12 +656,11 @@ function renderPlayoff(sim){
   document.getElementById('bracket-outer').innerHTML=quadrantData.map(q=>{
     const [m1,m2,m3,m4]=q.ms;
     const simQF=sim?.qf?.[q.id];
-    const qfWinner=simQF?`Predikert KF-vinner: ${disp(simQF.winner)}`:`Vinner KF: TBD`;
-    const sfNote=`→ SF1 (${['QF1','QF2'].includes(q.id)?'mot KF'+(q.id==='QF1'?'2':'1')+'-vinner':'mot KF'+(q.id==='QF3'?'4':'3')+'-vinner'})`;
+    const qfWinner=simQF?`Predikert vinner: ${disp(simQF.winner)}`:`Vinner: TBD`;
     return `<div class="qcard${q.nor?' nor-quad':''}">
       <div class="qcard-hdr">
         <span class="qcard-title">${q.nor?'🔴 ':''} ${q.label}</span>
-        <span class="qcard-sf" style="color:${q.nor?'var(--red)':'var(--muted)'}">${q.sf}</span>
+        <span class="qcard-sf" style="color:${q.nor?'var(--red)':'var(--muted);font-size:10px'}">${q.sf}</span>
       </div>
       <div class="bracket-inner">
         ${pod(m1,m2,sim)}
@@ -684,7 +702,7 @@ function simulateBracket(groupRankings,thirds,advThirds,w){
   for(const m of BRACKET.r32)r32[m.id]=sim(getTeam(m.s1,m.id),getTeam(m.s2,m.id));
   for(const m of BRACKET.r16)r16[m.id]=sim(r32[m.m1]?.winner,r32[m.m2]?.winner);
   for(const m of BRACKET.qf)qf[m.id]=sim(r16[m.r1]?.winner,r16[m.r2]?.winner);
-  const sf={SF1:sim(qf.QF1?.winner,qf.QF2?.winner),SF2:sim(qf.QF3?.winner,qf.QF4?.winner)};
+  const sf={SF1:sim(qf.QF97?.winner,qf.QF98?.winner),SF2:sim(qf.QF99?.winner,qf.QF100?.winner)};
   const final=sim(sf.SF1?.winner,sf.SF2?.winner);
   const third=sim(sf.SF1?.loser,sf.SF2?.loser);
   return{r32,r16,qf,sf,final,third,slots,thirdByMatch};
