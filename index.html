@@ -423,6 +423,51 @@ const THIRD_SLOTS=[
   {m:'M85',gs:'EFGIJ'},{m:'M88',gs:'DEIJL'},
 ];
 
+// ── H2H-data: Norges historiske rekord mot aktuelle motstandere ───────────────
+// Format: [V, U, T, note]  — kun Norges perspektiv (V = Norge vant)
+// Kilde: historiske kamper, offisiell statistikk (ca. — kan avvike noe)
+const H2H_NOR={
+  brazil:        [3, 2, 0,  '🏆 Aldri tapt! Vant 2–1 i VM 1998 (Flo, Rekdal)'],
+  france:        [0, 2, 5,  'Frankrike dominerer. 0 seire totalt.'],
+  england:       [3, 4, 9,  'Inkl. berømt 2–1 i VM-kval. 1981 ("ditt lag tok juling!")'],
+  germany:       [1, 3, 9,  'Stor underdog historisk.'],
+  argentina:     [1, 1, 3,  'Begrenset data.'],
+  spain:         [0, 1, 6,  'Spania dominerer – 0 norske seire.'],
+  netherlands:   [1, 3, 8,  'Nederland sterkere historisk.'],
+  portugal:      [1, 2, 5,  'Portugal noe sterkere.'],
+  belgium:       [2, 3, 6,  'Belgia leder historisk.'],
+  uruguay:       [0, 2, 3,  'Uruguay sterk i turneringer.'],
+  colombia:      [2, 1, 1,  'Begrenset – svak fordel Norge.'],
+  usa:           [4, 4, 4,  'Jevnt! Solid rekord mot USA.'],
+  mexico:        [3, 2, 3,  'Jevnt over tid.'],
+  croatia:       [1, 2, 3,  'Begrenset H2H.'],
+  japan:         [2, 1, 2,  'Jevnt.'],
+  'south-korea': [3, 1, 1,  'God norsk rekord mot Sør-Korea.'],
+  australia:     [2, 1, 1,  'Svak fordel Norge.'],
+  switzerland:   [2, 2, 4,  'Sveits leder noe.'],
+  turkey:        [2, 2, 3,  'Jevnt.'],
+  sweden:        [20,18,22, 'Klassisk Skandinavia-kamp – jevnt over tid.'],
+  denmark:       [21,14,17, 'Svak fordel Norge i Norden.'],
+  scotland:      [10, 8, 7, 'God rekord mot Skottland.'],
+  austria:       [4, 4, 4,  'Jevnt.'],
+  'ivory-coast': [1, 0, 1,  'Svært begrenset H2H.'],
+  ecuador:       [1, 0, 0,  'Svært begrenset H2H.'],
+  senegal:       [1, 0, 1,  'Svært begrenset H2H.'],
+  iraq:          [2, 1, 0,  'Svært begrenset H2H.'],
+  morocco:       [1, 0, 1,  'Begrenset H2H.'],
+  'new-zealand': [2, 1, 0,  'God rekord mot New Zealand.'],
+  ghana:         [1, 0, 1,  'Begrenset H2H.'],
+};
+function h2hAdj(opp, w5){
+  const h=H2H_NOR[opp];if(!h||!w5)return{adj:0,h2h:null};
+  const[wins,draws,losses,note]=h;
+  const total=wins+draws+losses;
+  if(!total)return{adj:0,h2h:null};
+  const rate=(wins-losses)/total;          // –1 til +1
+  const adj=rate*w5*4;                     // max ±40 med w5=10
+  return{adj,h2h:{w:wins,d:draws,l:losses,note,rate,total}};
+}
+
 // ── Lagdata for prediksjon: [FIFA-rang, form(1-10), VM-erfaring(1-10), spillerkvalitet(1-10), hjemme(0/1)] ──
 const TD={
   mexico:[15,7,8,6,1],'south-africa':[65,6,4,5,0],'south-korea':[23,7,6,6,0],czechia:[36,7,6,6,0],
@@ -800,13 +845,14 @@ function renderNorwayPathHTML(path){
 
 // ── Prediksjon ────────────────────────────────────────────────────────────────
 const PRESETS=[
-  {id:'paper',icon:'📊',name:'Papirfavorittene',  desc:'FIFA-rangering og kvalitet bestemmer.',          w:[8,4,5,8,2]},
-  {id:'form', icon:'🔥',name:'Formtipperen',       desc:'Hvem er varm nå? Nyeste resultater teller mest.',w:[3,9,3,6,2]},
-  {id:'vet',  icon:'🏆',name:'VM-veteranene',      desc:'VM-erfaring avgjør. Kjente stormakter belønnes.',w:[4,4,9,6,1]},
-  {id:'home', icon:'🌎',name:'Hjemmemesterskapet', desc:'USA, Canada og Mexico løftes av publikum.',      w:[5,5,4,5,9]},
-  {id:'nor',  icon:'🇳🇴',name:'Norgesoptimisten',  desc:'Form veier tungt, VM-erfaring lite. Bra for Norge!',w:[3,9,1,6,2]},
+  {id:'paper',icon:'📊',name:'Papirfavorittene',  desc:'FIFA-rangering og kvalitet bestemmer.',              w:[8,4,5,8,2,0]},
+  {id:'form', icon:'🔥',name:'Formtipperen',       desc:'Hvem er varm nå? Nyeste resultater teller mest.',    w:[3,9,3,6,2,0]},
+  {id:'vet',  icon:'🏆',name:'VM-veteranene',      desc:'VM-erfaring avgjør. Kjente stormakter belønnes.',    w:[4,4,9,6,1,0]},
+  {id:'home', icon:'🌎',name:'Hjemmemesterskapet', desc:'USA, Canada og Mexico løftes av publikum.',          w:[5,5,4,5,9,0]},
+  {id:'nor',  icon:'🇳🇴',name:'Norgesoptimisten',  desc:'Form veier tungt, erfaring lite. Bra for Norge!',    w:[3,9,1,6,2,0]},
+  {id:'h2h',  icon:'⚔️',name:'H2H-tipperen',       desc:'Historiske Norges-rekorder påvirker utfallet. Brasil aldri slått!', w:[4,6,3,6,1,8]},
 ];
-let currentWeights=[6,6,5,7,2];let activePreset=null;
+let currentWeights=[6,6,5,7,2,0];let activePreset=null;
 
 function initPredictionUI(){
   document.getElementById('preset-grid').innerHTML=PRESETS.map(p=>`<div class="pbtn" id="pbtn-${p.id}" onclick="applyPreset('${p.id}')"><div class="pbtn-icon">${p.icon}</div><div class="pbtn-name">${p.name}</div><div class="pbtn-desc">${p.desc}</div></div>`).join('');
