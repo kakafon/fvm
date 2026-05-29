@@ -740,8 +740,15 @@ function simulateBracket(groupRankings,thirds,advThirds,w){
     return thirdByMatch[mid]||null;
   }
   function sim(t1,t2){
-    const s1=t1?calcStrength(t1,w):0,s2=t2?calcStrength(t2,w):0;
-    return{t1,t2,s1,s2,winner:s1>=s2?t1:t2,loser:s1>=s2?t2:t1};
+    let s1=t1?calcStrength(t1,w):0;
+    let s2=t2?calcStrength(t2,w):0;
+    let h2hInfo=null;
+    // H2H gjelder kun kamper der Norge deltar
+    if(w[5]>0){
+      if(t1==='norway'){const r=h2hAdj(t2,w[5]);s1+=r.adj;h2hInfo=r.h2h?{...r.h2h,adj:r.adj}:null;}
+      else if(t2==='norway'){const r=h2hAdj(t1,w[5]);s2+=r.adj;h2hInfo=r.h2h?{...r.h2h,adj:r.adj}:null;}
+    }
+    return{t1,t2,s1,s2,winner:s1>=s2?t1:t2,loser:s1>=s2?t2:t1,h2hInfo};
   }
   const r32={},r16={},qf={};
   for(const m of BRACKET.r32)r32[m.id]=sim(getTeam(m.s1,m.id),getTeam(m.s2,m.id));
@@ -798,7 +805,13 @@ function findNorwayPath(sim,groupRankings,thirds,advThirds){
     const norStr=m.t1==='norway'?m.s1:m.s2;
     const win=m.winner==='norway';
     const lbl=['r32','r16','qf','sf','final'].indexOf(round);
-    path.steps.push({round:['R32','16-del','Kvartfinale','Semifinale','Finale'][lbl],opp,oppStr:oppStr.toFixed(0),norStr:norStr.toFixed(0),win});
+    // Sjekk om H2H var avgjørende (Norge vant med H2H-bonus, men ville tapt uten)
+    const h2hDecisive = win && m.h2hInfo && (norStr - m.h2hInfo.adj) < oppStr;
+    path.steps.push({
+      round:['R32','16-del','Kvartfinale','Semifinale','Finale'][lbl],
+      opp, oppStr:oppStr.toFixed(1), norStr:norStr.toFixed(1),
+      win, h2hInfo:m.h2hInfo||null, h2hDecisive
+    });
     if(!win){
       // 3rd place?
       if(round==='sf'){const t=sim.third;const to=t.t1==='norway'?t.t2:t.t1;path.steps.push({round:'Bronse',opp:to,win:t.winner==='norway'});}
@@ -833,7 +846,29 @@ function renderNorwayPathHTML(path){
     const oppd=s.opp?disp(s.opp):'TBD';
     const cls=s.round==='Bronse'?(s.win?'adv':'elim'):s.win?'adv':'elim';
     const res=s.win?`<span class="path-result w">✓ VIDERE</span>`:`<span class="path-result l">✗ UTE</span>`;
-    return `<div class="path-step ${cls}"><span class="path-round">${s.round}</span><span class="path-match">vs ${oppd} <span style="font-size:10px;color:var(--muted)">(${s.norStr} vs ${s.oppStr})</span></span>${res}</div>`;
+
+    // H2H-linje (vises kun når h2h-vekt > 0 og data finnes)
+    let h2hLine='';
+    if(s.h2hInfo){
+      const{w:hw,d:hd,l:hl,note,adj}=s.h2hInfo;
+      const sign=adj>=0?'+':'';
+      const col=adj>0?'var(--green)':adj<0?'var(--danger)':'var(--muted)';
+      const decisive=s.h2hDecisive
+        ?`<span style="color:var(--gold);font-weight:700;margin-left:6px">⚡ H2H avgjorde!</span>`:'';
+      h2hLine=`<div style="font-size:10px;color:var(--muted);margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,255,255,.07)">
+        ⚔️ H2H: <b>${hw}V–${hd}U–${hl}T</b> · ${note}
+        · <span style="color:${col};font-weight:700">${sign}${adj.toFixed(1)} pts${decisive}</span>
+      </div>`;
+    }
+    return `<div class="path-step ${cls}">
+      <span class="path-round">${s.round}</span>
+      <span class="path-match" style="flex:1">
+        vs ${oppd}
+        <span style="font-size:10px;color:var(--muted)">(${s.norStr} vs ${s.oppStr})</span>
+        ${h2hLine}
+      </span>
+      ${res}
+    </div>`;
   }).join('');
   return `<div class="nor-path-box">
     <div class="nor-path-title">🇳🇴 Norges predikerte vei · ${finalLabel}</div>
@@ -856,7 +891,14 @@ let currentWeights=[6,6,5,7,2,0];let activePreset=null;
 
 function initPredictionUI(){
   document.getElementById('preset-grid').innerHTML=PRESETS.map(p=>`<div class="pbtn" id="pbtn-${p.id}" onclick="applyPreset('${p.id}')"><div class="pbtn-icon">${p.icon}</div><div class="pbtn-name">${p.name}</div><div class="pbtn-desc">${p.desc}</div></div>`).join('');
-  const factors=[{id:'rank',l:'FIFA-rangering',d:'Offisiell verdensrangering'},{id:'form',l:'Siste form',d:'Kval. og turneringsresultater'},{id:'exp',l:'VM-erfaring',d:'VM-historikk'},{id:'squad',l:'Spillerkvalitet',d:'Lagstyrke / stjerner'},{id:'home',l:'Hjemmefordel',d:'USA/Canada/Mexico-bonus'}];
+  const factors=[
+    {id:'rank', l:'FIFA-rangering',  d:'Offisiell verdensrangering'},
+    {id:'form', l:'Siste form',      d:'Kval. og turneringsresultater'},
+    {id:'exp',  l:'VM-erfaring',     d:'VM-historikk'},
+    {id:'squad',l:'Spillerkvalitet', d:'Lagstyrke / stjerner'},
+    {id:'home', l:'Hjemmefordel',    d:'USA/Canada/Mexico-bonus'},
+    {id:'h2h',  l:'H2H · Norge',     d:'Norges historikk mot motstanderen ⚔️'},
+  ];
   document.getElementById('sliders').innerHTML=factors.map((f,i)=>`<div class="sl-row"><div class="sl-lbl">${f.l}<span>${f.d}</span></div><input type="range" id="sl-${f.id}" min="0" max="10" value="${currentWeights[i]}" oninput="onSlider(${i},this.value)"><div class="sl-val" id="slv-${f.id}">${currentWeights[i]}</div></div>`).join('');
 }
 function applyPreset(id){
