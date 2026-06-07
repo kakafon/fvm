@@ -801,21 +801,21 @@ function getH2HAdj(t1,t2,w5){
 const TD={
   mexico:[15,7,8,6,1],'south-africa':[65,6,4,5,0],'south-korea':[23,7,6,6,0],czechia:[36,7,6,6,0],
   canada:[40,7,2,6,1],bosnia:[65,7,2,6,0],qatar:[35,5,2,5,0],switzerland:[20,8,6,7,0],
-  brazil:[5,7,10,9,0],morocco:[14,7,5,7,0],haiti:[83,4,1,4,0],scotland:[38,7,3,7,0],
+  brazil:[5,8,10,9,0],morocco:[14,7,5,7,0],haiti:[83,4,1,4,0],scotland:[38,7,3,7,0],
   usa:[13,8,5,8,1],paraguay:[61,6,5,5,0],australia:[22,6,5,6,0],turkey:[30,8,5,7,0],
   germany:[13,8,10,8,0],curacao:[160,5,1,4,0],'ivory-coast':[40,7,4,7,0],ecuador:[44,6,3,6,0],
   netherlands:[7,8,9,8,0],japan:[18,9,6,8,0],sweden:[26,7,7,7,0],tunisia:[30,5,5,5,0],
   belgium:[8,7,7,8,0],egypt:[52,6,3,6,0],iran:[21,6,5,6,0],'new-zealand':[99,5,2,5,0],
   spain:[2,9,9,9,0],'cape-verde':[70,7,1,5,0],'saudi-arabia':[56,5,5,5,0],uruguay:[17,8,9,7,0],
   france:[3,8,10,9,0],senegal:[19,7,4,7,0],iraq:[58,6,2,5,0],norway:[29,9,3,7,0],
-  argentina:[1,9,10,10,0],algeria:[34,7,5,6,0],austria:[28,8,4,7,0],jordan:[87,6,1,5,0],
+  argentina:[1,9,10,9,0],algeria:[34,7,5,6,0],austria:[28,8,4,7,0],jordan:[87,6,1,5,0],
   portugal:[6,8,8,8,0],'dr-congo':[44,6,3,6,0],uzbekistan:[75,7,1,5,0],colombia:[12,9,6,8,0],
   england:[4,8,9,9,0],croatia:[10,7,8,7,0],ghana:[60,6,5,6,0],panama:[70,6,2,5,0],
 };
 function calcStrength(key,w){
   const d=TD[key];if(!d)return 0;
   const[rank,form,exp,squad,home]=d;
-  const rs=Math.max(5,100-(rank-1)*1.4);
+  const rs=Math.max(10,100-(rank-1)*1.0);
   const tot=w[0]+w[1]+w[2]+w[3]+w[4];if(!tot)return 50;
   return(rs*w[0]+form*10*w[1]+exp*10*w[2]+squad*10*w[3]+home*100*w[4])/tot;
 }
@@ -1081,6 +1081,11 @@ function simulateBracket(groupRankings,thirds,advThirds,w){
         h2hInfo={...r.record,adj1:r.adj1,adj2:r.adj2,norAdj};
       }
     }
+    // Overraskelsesfaktor: tilfeldig støy per kamp (±w[6]*1.5 maks)
+    if(w[6]>0){
+      s1+=(Math.random()-0.5)*w[6]*3;
+      s2+=(Math.random()-0.5)*w[6]*3;
+    }
     return{t1,t2,s1,s2,winner:s1>=s2?t1:t2,loser:s1>=s2?t2:t1,h2hInfo};
   }
   const r32={},r16={},qf={};
@@ -1213,14 +1218,14 @@ function renderNorwayPathHTML(path){
 
 // ── Prediksjon ────────────────────────────────────────────────────────────────
 const PRESETS=[
-  {id:'paper',icon:'📊',name:'Papirfavorittene',  desc:'FIFA-rangering og kvalitet bestemmer.',              w:[8,4,5,8,2,0]},
-  {id:'form', icon:'🔥',name:'Formtipperen',       desc:'Hvem er varm nå? Nyeste resultater teller mest.',    w:[3,9,3,6,2,0]},
-  {id:'vet',  icon:'🏆',name:'VM-veteranene',      desc:'VM-erfaring avgjør. Kjente stormakter belønnes.',    w:[4,4,9,6,1,0]},
-  {id:'home', icon:'🌎',name:'Hjemmemesterskapet', desc:'USA, Canada og Mexico løftes av publikum.',          w:[5,5,4,5,9,0]},
-  {id:'nor',  icon:'🇳🇴',name:'Norgesoptimisten',  desc:'Form veier tungt, erfaring lite. Bra for Norge!',    w:[3,9,1,6,2,0]},
-  {id:'h2h',  icon:'⚔️',name:'H2H-tipperen',       desc:'Historiske head-to-head for alle lag. Norge aldri tapt mot Brasil!', w:[4,6,3,6,1,8]},
+  {id:'paper',icon:'📊',name:'Papirfavorittene',  desc:'FIFA-rangering og kvalitet bestemmer.',              w:[8,4,5,8,2,0,0]},
+  {id:'form', icon:'🔥',name:'Formtipperen',       desc:'Hvem er varm nå? Nyeste resultater teller mest.',    w:[3,9,3,6,2,0,0]},
+  {id:'vet',  icon:'🏆',name:'VM-veteranene',      desc:'VM-erfaring avgjør. Kjente stormakter belønnes.',    w:[4,4,9,6,1,0,0]},
+  {id:'home', icon:'🌎',name:'Hjemmemesterskapet', desc:'USA, Canada og Mexico løftes av publikum.',          w:[5,5,4,5,9,0,0]},
+  {id:'nor',  icon:'🇳🇴',name:'Norgesoptimisten',  desc:'Form tung, erfaring lett. Litt tilfeldighet – Norges beste sjanse!', w:[3,9,1,6,2,0,3]},
+  {id:'h2h',  icon:'⚔️',name:'H2H-tipperen',       desc:'H2H for alle lag. Brasil aldri slått av Norge! Overraskelsene følger historien.', w:[4,6,3,6,1,8,0]},
 ];
-let currentWeights=[6,6,5,7,2,0];let activePreset=null;
+let currentWeights=[6,6,5,7,2,0,0];let activePreset=null;
 
 function initPredictionUI(){
   document.getElementById('preset-grid').innerHTML=PRESETS.map(p=>`<div class="pbtn" id="pbtn-${p.id}" onclick="applyPreset('${p.id}')"><div class="pbtn-icon">${p.icon}</div><div class="pbtn-name">${p.name}</div><div class="pbtn-desc">${p.desc}</div></div>`).join('');
@@ -1231,18 +1236,19 @@ function initPredictionUI(){
     {id:'squad',l:'Spillerkvalitet', d:'Lagstyrke / stjerner'},
     {id:'home', l:'Hjemmefordel',    d:'USA/Canada/Mexico-bonus'},
     {id:'h2h',  l:'H2H-historikk',   d:'Head-to-head for alle lag ⚔️ (~250 par)'},
+    {id:'rnd',  l:'Overraskelsesfaktor',d:'Tilfeldig variasjon per kamp – gir realistiske skrekksenerier 🎲'},
   ];
   document.getElementById('sliders').innerHTML=factors.map((f,i)=>`<div class="sl-row"><div class="sl-lbl">${f.l}<span>${f.d}</span></div><input type="range" id="sl-${f.id}" min="0" max="10" value="${currentWeights[i]}" oninput="onSlider(${i},this.value)"><div class="sl-val" id="slv-${f.id}">${currentWeights[i]}</div></div>`).join('');
 }
 function applyPreset(id){
   const p=PRESETS.find(x=>x.id===id);if(!p)return;
   activePreset=id;document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('on'));document.getElementById('pbtn-'+id)?.classList.add('on');
-  currentWeights=[...p.w];
+  currentWeights=[...p.w];while(currentWeights.length<7)currentWeights.push(0);
   ['rank','form','exp','squad','home'].forEach((k,i)=>{const sl=document.getElementById('sl-'+k);const vl=document.getElementById('slv-'+k);if(sl)sl.value=currentWeights[i];if(vl)vl.textContent=currentWeights[i];});
 }
 function onSlider(i,v){
   currentWeights[i]=parseInt(v)||0;
-  const keys=['rank','form','exp','squad','home'];
+  const keys=['rank','form','exp','squad','home','h2h','rnd'];
   const vl=document.getElementById('slv-'+keys[i]);if(vl)vl.textContent=v;
   if(activePreset){const p=PRESETS.find(x=>x.id===activePreset);if(p&&JSON.stringify(p.w)!==JSON.stringify(currentWeights)){activePreset=null;document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('on'));}}
 }
