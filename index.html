@@ -251,8 +251,8 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
     <div id="nor-bracket-preview"></div>
   </div>
   <div class="card" style="border-color:rgba(251,191,36,.2)">
-    <div class="lbl" style="color:var(--gold)">🏆 Sluttspill-bracket · R32 – Final</div>
-    <div class="preview-badge" style="margin-bottom:14px">Kampene spilles 28. jun–19. jul · 16 R32-matcher forhåndsbestemt av FIFA etter gruppe-posisjon. Generer en prediksjon (🔮-fanen) for å se hvem som fyller bracketet.</div>
+    <div class="lbl" style="color:var(--gold)">🏆 Sluttspill-bracket · 16-delsfinale – Finale</div>
+    <div class="preview-badge" style="margin-bottom:14px">Kampene spilles 28. jun–19. jul · 16 16-delsfinale-matcher forhåndsbestemt av FIFA etter gruppe-posisjon. Generer en prediksjon (🔮-fanen) for å se hvem som fyller bracketet.</div>
     <div class="bracket-outer" id="bracket-outer"></div>
   </div>
 </div>
@@ -367,9 +367,9 @@ let activeGrp='A';
 
 // ── Offisiell R32-bracket (FIFA Annex C) ──────────────────────────────────────
 // Kilde: FIFA knockout-stage bracket schedule, verifisert mot gamblingcalc.com
-// R32 matchnumre M73–M88; R16 M89–M96; KF M97–M100; SF M101–M102; Finale M104
+// 16-del matchnumre M73–M88; 8-del M89–M96; KF M97–M100; SF M101–M102; Finale M104
 // Offisielt FIFA-bracket (verifisert mot FIFA kampprogrammet):
-// R16 M89=W74vsW77, M90=W73vsW75, M91=W76vsW78(NORGE!), M92=W79vsW80
+// 8-del M89=W74vsW77, M90=W73vsW75, M91=W76vsW78(NORGE!), M92=W79vsW80
 // M93=W83vsW84, M94=W81vsW82, M95=W86vsW88, M96=W85vsW87
 // → Frankrike(1I via M77→M89→KF97→SF1) og Norge(2I via M78→M91→KF99→SF2)
 //   kan KUN møtes i FINALEN (M104)!
@@ -883,7 +883,7 @@ function renderHero(st){
   if(!n){document.getElementById('hero').innerHTML='<div>Ingen data</div>';return;}
   const adv=n.pos<=2,maybe=n.pos===3;const gds=n.gd>0?`+${n.gd}`:n.gd;
   document.getElementById('hero').className='hero'+(adv?' adv':'');
-  document.getElementById('hero').innerHTML=`<div><div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">🇳🇴 Norge · VM 2026 · Gruppe I</div><div class="hero-pos">Plass ${n.pos} <span>av 4</span></div>${adv?'<div style="font-size:12px;color:var(--green);font-weight:700;margin-top:4px">✓ Videre til 32-delsfinale</div>':maybe?'<div style="font-size:12px;color:#d97706;font-weight:700;margin-top:4px">◌ Mulig videre (8 beste 3.-plasser)</div>':n.pld===0?'<div style="font-size:12px;color:var(--muted);margin-top:4px">Turneringen starter 11. juni</div>':'<div style="font-size:12px;color:var(--danger);font-weight:700;margin-top:4px">✗ Ute av turneringen</div>'}</div>${[['Poeng',n.pts,'#fff'],['Spilt',n.pld,'rgba(255,255,255,.7)'],['Seire',n.w,'var(--green)'],['Uavgjort',n.d,'#facc15'],['Tap',n.l,'var(--danger)'],['MF',gds,n.gd>=0?'var(--green)':'var(--danger)']].map(([l,v,c])=>`<div><div class="s-val" style="color:${c}">${v}</div><div class="s-lbl">${l}</div></div>`).join('')}`;
+  document.getElementById('hero').innerHTML=`<div><div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">🇳🇴 Norge · VM 2026 · Gruppe I</div><div class="hero-pos">Plass ${n.pos} <span>av 4</span></div>${adv?'<div style="font-size:12px;color:var(--green);font-weight:700;margin-top:4px">✓ Videre til 16-delsfinale</div>':maybe?'<div style="font-size:12px;color:#d97706;font-weight:700;margin-top:4px">◌ Mulig videre (8 beste 3.-plasser)</div>':n.pld===0?'<div style="font-size:12px;color:var(--muted);margin-top:4px">Turneringen starter 11. juni</div>':'<div style="font-size:12px;color:var(--danger);font-weight:700;margin-top:4px">✗ Ute av turneringen</div>'}</div>${[['Poeng',n.pts,'#fff'],['Spilt',n.pld,'rgba(255,255,255,.7)'],['Seire',n.w,'var(--green)'],['Uavgjort',n.d,'#facc15'],['Tap',n.l,'var(--danger)'],['MF',gds,n.gd>=0?'var(--green)':'var(--danger)']].map(([l,v,c])=>`<div><div class="s-val" style="color:${c}">${v}</div><div class="s-lbl">${l}</div></div>`).join('')}`;
 }
 function renderTable(id,rows){
   const H=['#','Lag','KP','V','U','T','MF','MM','MD','P',''];
@@ -965,22 +965,22 @@ function renderPlayoff(sim){
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">
       <div style="background:var(--res-bg);border-radius:8px;padding:10px 12px">
         <div style="font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:6px">SOM 1I (GRUPPEVINNER)</div>
-        <div>🏟 R32 (M77): 1I vs <b>3rd C/D/F/G/H</b></div>
+        <div>🏟 16-del (M77): 1I vs <b>3rd C/D/F/G/H</b></div>
         <div style="margin-top:3px;color:var(--muted)">Mulig: Marokko, Skottland, Jordan, Iran…</div>
-        <div style="margin-top:5px;color:var(--muted)">R16: vs vinner M78 (2E vs 2I)</div>
+        <div style="margin-top:5px;color:var(--muted)">8-del: vs vinner M78 (2E vs 2I)</div>
         <div style="margin-top:2px;color:var(--muted)">KF2 mot: 1A/1L-siden (Mexico/England)</div>
       </div>
       <div style="background:rgba(239,43,45,.08);border:1px solid rgba(239,43,45,.25);border-radius:8px;padding:10px 12px">
         <div style="font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--red);margin-bottom:6px">SOM 2I (ANDREPLASS) ← MEST SANNSYNLIG</div>
-        <div>🏟 R32 (M78): 2I vs <b>2E</b></div>
+        <div>🏟 16-del (M78): 2I vs <b>2E</b></div>
         <div style="margin-top:3px;color:var(--muted)">2E = sannsynligvis 🇨🇮 Elfenbenskysten eller 🇪🇨 Ecuador</div>
-        <div style="margin-top:5px;color:var(--muted)">R16 (M91): vs vinner M76 = 🇧🇷 Brasil (1C) eller 2F</div>
+        <div style="margin-top:5px;color:var(--muted)">8-del (M91): vs vinner M76 = 🇧🇷 Brasil (1C) eller 2F</div>
         <div style="margin-top:2px;color:var(--muted)">KF (QF99): vs Mexico- eller England-siden</div>
         <div style="margin-top:2px;color:var(--muted)">SF2 → Finale mot eventuelt Frankrike</div>
       </div>
     </div>
     <div style="font-size:11px;color:var(--gold);margin-top:8px;padding:7px 11px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:6px">
-      🏆 <b>Frankrike og Norge er i motsatte SF-halvdeler og kan KUN møtes i FINALEN (19. juli).</b> Norges vei: R32 vs 2E → R16 vs Brasil → KF vs Mexico/England → SF vs Argentina/Canada.
+      🏆 <b>Frankrike og Norge er i motsatte SF-halvdeler og kan KUN møtes i FINALEN (19. juli).</b> Norges vei: 16-del vs 2E → 8-del vs Brasil → KF vs Mexico/England → SF vs Argentina/Canada.
     </div>`
 
   // 4 kvartfinale-sider organisert etter faktisk bracket (verifisert mot FIFA-program)
@@ -1018,7 +1018,7 @@ function renderPlayoff(sim){
       return `<div class="${cls}"><span class="slot-lbl">${lbl}</span><span class="team-name">${teamTxt}</span>${strTxt}</div>`;
     }
     const r16winner=simR16?TLK(simR16.winner):{f:'',no:'?'};
-    const r16lbl=simR16?`→ 16-del: ${r16winner.f} ${r16winner.no}`:`→ 16-delsfinale: vinner ${m1id} vs vinner ${m2id}`;
+    const r16lbl=simR16?`→ 8-del: ${r16winner.f} ${r16winner.no}`:`→ 8-delsfinale: vinner ${m1id} vs vinner ${m2id}`;
     return `<div class="qpod">
       <div class="qpod-lbl">${m1id} · ${m2id}</div>
       ${row(m1,'t1',simR32_1)}${row(m1,'t2',simR32_1)}
@@ -1146,7 +1146,7 @@ function findNorwayPath(sim,groupRankings,thirds,advThirds){
     // Sjekk om H2H var avgjørende (Norge vant med H2H-bonus, men ville tapt uten)
     const h2hDecisive = win && m.h2hInfo?.norAdj && (norStr - m.h2hInfo.norAdj) < oppStr;
     path.steps.push({
-      round:['R32','16-del','Kvartfinale','Semifinale','Finale'][lbl],
+      round:['16-del','8-del','Kvartfinale','Semifinale','Finale'][lbl],
       opp, oppStr:oppStr.toFixed(1), norStr:norStr.toFixed(1),
       win, h2hInfo:m.h2hInfo||null, h2hDecisive
     });
