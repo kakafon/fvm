@@ -438,7 +438,7 @@ const H2H_RAW={
   'norway|portugal':      [1,2,5],
   'norway|belgium':       [2,3,6],
   'norway|croatia':       [1,2,3],
-  'norway|sweden':        [22,18,20],
+  'norway|sweden':        [23,18,20],
   'norway|denmark':       [21,14,17],
   'norway|austria':       [4,4,4],
   'norway|switzerland':   [3,2,4],
@@ -456,7 +456,7 @@ const H2H_RAW={
   'norway|senegal':       [1,0,1],
   'norway|iraq':          [2,1,0],
   'norway|ecuador':       [1,0,0],
-  'norway|morocco':       [1,0,1],
+  'norway|morocco':       [1,1,1],
   'norway|iran':          [2,0,0],
   'norway|south-africa':  [2,1,0],
   'norway|ghana':         [1,0,1],
@@ -554,7 +554,7 @@ const H2H_RAW={
   'uruguay|spain':        [9,6,14],
   'uruguay|netherlands':  [3,2,4],
   'uruguay|portugal':     [1,0,2],
-  'uruguay|usa':          [4,2,2],
+  'uruguay|usa':          [4,2,3],
   'uruguay|south-korea':  [3,0,0],
   'uruguay|mexico':       [5,3,5],
   'uruguay|ghana':        [1,0,1],
@@ -617,7 +617,7 @@ const H2H_RAW={
   'germany|croatia':      [4,1,1],
   'germany|czechia':      [7,5,5],
   'germany|belgium':      [12,5,7],
-  'germany|usa':          [4,1,2],
+  'germany|usa':          [5,1,2],
   'germany|uruguay':      [4,2,2],
   'germany|mexico':       [8,2,4],
   'germany|japan':        [5,1,1],
@@ -670,7 +670,7 @@ const H2H_RAW={
   'netherlands|senegal':  [1,0,0],
   'netherlands|ecuador':  [1,0,0],
   'netherlands|mexico':   [3,1,1],
-  'belgium|croatia':      [4,0,1],
+  'belgium|croatia':      [5,0,1],
   'belgium|sweden':       [8,4,7],
   'belgium|switzerland':  [7,4,6],
   'belgium|turkey':       [4,2,2],
@@ -779,6 +779,15 @@ const H2H_RAW={
   'uzbekistan|australia': [1,0,2],
   // OSEANIA
   'australia|new-zealand':[16,5,3],
+  // Nye par fra treningskamper mai-juni 2026
+  'france|ivory-coast':   [4,2,1],  // CIV slo FRA 2-1 (jun 2026), FRA ledet historisk
+  'belgium|tunisia':      [2,0,0],  // BEL 5-0 TUN (jun 2026)
+  'england|new-zealand':  [2,0,0],  // ENG 1-0 NZL (jun 2026)
+  'brazil|egypt':         [2,0,0],  // BRA 2-1 EGY (jun 2026)
+  'brazil|panama':        [3,0,0],  // BRA 6-2 PAN (jun 2026)
+  'haiti|new-zealand':    [1,0,0],  // HAI slår NZL (jun 2026)
+  'colombia|jordan':      [2,0,0],  // COL 2-0 JOR
+  'australia|switzerland':[0,1,0],  // 1-1 (jun 2026),
 };
 
 // Slår opp H2H (prøver begge retninger automatisk)
@@ -801,13 +810,13 @@ function getH2HAdj(t1,t2,w5){
 const TD={
   mexico:[15,7,8,6,1],'south-africa':[65,6,4,5,0],'south-korea':[23,7,6,6,0],czechia:[36,7,6,6,0],
   canada:[40,7,2,6,1],bosnia:[65,7,2,6,0],qatar:[35,5,2,5,0],switzerland:[20,8,6,7,0],
-  brazil:[5,8,10,9,0],morocco:[14,7,5,7,0],haiti:[83,4,1,4,0],scotland:[38,7,3,7,0],
-  usa:[13,8,5,8,1],paraguay:[61,6,5,5,0],australia:[22,6,5,6,0],turkey:[30,8,5,7,0],
-  germany:[13,8,10,8,0],curacao:[160,5,1,4,0],'ivory-coast':[40,7,4,7,0],ecuador:[44,6,3,6,0],
-  netherlands:[7,8,9,8,0],japan:[18,9,6,8,0],sweden:[26,7,7,7,0],tunisia:[30,5,5,5,0],
-  belgium:[8,7,7,8,0],egypt:[52,6,3,6,0],iran:[21,6,5,6,0],'new-zealand':[99,5,2,5,0],
-  spain:[2,9,9,9,0],'cape-verde':[70,7,1,5,0],'saudi-arabia':[56,5,5,5,0],uruguay:[17,8,9,7,0],
-  france:[3,8,10,9,0],senegal:[19,7,4,7,0],iraq:[58,6,2,5,0],norway:[29,9,3,7,0],
+  brazil:[5,9,10,9,0],morocco:[14,7,5,7,0],haiti:[83,6,1,4,0],scotland:[38,7,3,7,0],
+  usa:[13,7,5,8,1],paraguay:[61,6,5,5,0],australia:[22,6,5,6,0],turkey:[30,8,5,7,0],
+  germany:[13,9,10,8,0],curacao:[160,5,1,4,0],'ivory-coast':[40,8,4,7,0],ecuador:[44,6,3,6,0],
+  netherlands:[7,8,9,8,0],japan:[18,9,6,8,0],sweden:[26,6,7,7,0],tunisia:[30,4,5,5,0],
+  belgium:[8,9,7,8,0],egypt:[52,6,3,6,0],iran:[21,6,5,6,0],'new-zealand':[99,4,2,5,0],
+  spain:[2,9,9,9,0],'cape-verde':[70,7,1,5,0],'saudi-arabia':[56,5,5,5,0],uruguay:[17,6,9,7,0],
+  france:[3,7,10,9,0],senegal:[19,7,4,7,0],iraq:[58,6,2,5,0],norway:[29,9,3,7,0],
   argentina:[1,9,10,9,0],algeria:[34,7,5,6,0],austria:[28,8,4,7,0],jordan:[87,6,1,5,0],
   portugal:[6,8,8,8,0],'dr-congo':[44,6,3,6,0],uzbekistan:[75,7,1,5,0],colombia:[12,9,6,8,0],
   england:[4,8,9,9,0],croatia:[10,7,8,7,0],ghana:[60,6,5,6,0],panama:[70,6,2,5,0],
