@@ -1113,8 +1113,8 @@ function findNorwayPath(sim,groupRankings,thirds,advThirds){
   if(!norR32){path.eliminated='gruppe';return path;}
 
   const rounds=[
-    {key:'r32',label:'R32'},
-    {key:'r16',label:'16-del'},
+    {key:'r32',label:'16-del'},
+    {key:'r16',label:'8-del'},
     {key:'qf', label:'Kvartfinale'},
     {key:'sf', label:'Semifinale'},
     {key:'final',label:'Finale'},
@@ -1177,7 +1177,8 @@ function renderNorwayPathHTML(path){
         r==='Finale'?'🥈 2. plass (finalist)':
         r==='Semifinale'?'Ut i semifinalen – topp 4':
         r==='Kvartfinale'?'Ut i kvartfinalen – topp 8':
-        r==='16-del'?'Ut i 16-delsfinalen – topp 16':'Ut i R32';
+        r==='8-del'?'Ut i 8-delsfinalen':
+        r==='16-del'?'Ut i 16-delsfinalen':'Eliminert';
     }
   }
   const stepsHTML=path.steps.map(s=>{
@@ -1310,7 +1311,7 @@ function renderPredOutput(groupRankings,thirds,sim,norPath,w){
     </div>
     <div class="card" style="border-color:rgba(251,191,36,.3)">
       <div class="lbl" style="color:var(--gold)">🏆 Predikert sluttplassering 1–4</div>
-      <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Basert på fullstendig bracket-simulering R32 → R16 → KF → SF → Finale</p>
+      <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Basert på fullstendig bracket-simulering 16-del → 8-del → KF → SF → Finale</p>
       <div class="semis-grid">${semisHTML}</div>
     </div>
     <div class="card">
