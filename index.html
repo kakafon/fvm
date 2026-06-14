@@ -239,8 +239,9 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
 <!-- RESULTATER -->
 <div class="panel" id="panel-r">
   <div class="card">
-    <div class="lbl" style="color:var(--orange)">Gruppe I · Alle resultater <span id="r-src" style="font-size:10px;font-weight:400;opacity:.5"></span></div>
-    <div class="rl" id="res-i"></div>
+    <div class="lbl" style="color:var(--orange)">Alle kamper · Gruppespill <span id="r-src" style="font-size:10px;font-weight:400;opacity:.5"></span></div>
+    <div class="grp-btns" id="r-filter-btns" style="margin-bottom:12px"></div>
+    <div class="rl" id="all-results"></div>
   </div>
 </div>
 
@@ -281,7 +282,7 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
 </div>
 
 </div>
-<footer>Tabell og resultater fra Wikipedia · Turneringen starter 11. juni 2026 · Bracket: FIFA Annex C</footer>
+<footer>Tabell og resultater fra Wikipedia · VM 2026 pågår! · Bracket: FIFA Annex C</footer>
 
 <script>
 // ── Lagdata ───────────────────────────────────────────────────────────────────
@@ -364,6 +365,38 @@ const GRP_FIXTURES={
 };
 const LIVE_GROUPS={};
 let activeGrp='A';
+const ALL_RESULTS={};  // live resultater per gruppe (fra Wikipedia)
+
+function renderAllResults(filterGrp){
+  const el=document.getElementById('all-results');if(!el)return;
+  let items=[];
+  for(const g of 'ABCDEFGHIJKL'.split('')){
+    if(filterGrp&&filterGrp!=='ALL'&&g!==filterGrp)continue;
+    const live=ALL_RESULTS[g];
+    const fx=g==='I'?GRP_I_RES:(GRP_FIXTURES[g]||[]);
+    const src=live||fx;
+    src.forEach(r=>items.push({...r,grp:g}));
+  }
+  const played=items.filter(r=>r.score).sort((a,b)=>parseInt(b.date)-parseInt(a.date));
+  const upcoming=items.filter(r=>!r.score).sort((a,b)=>parseInt(a.date)-parseInt(b.date));
+  const sorted=[...played,...upcoming];
+  if(!sorted.length){el.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted)">Ingen kamper å vise</div>';return;}
+  el.innerHTML=sorted.map(r=>{
+    const grpBdg=`<span style="font-size:9px;background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px;margin-left:4px;color:var(--muted)">Gr.${r.grp}</span>`;
+    if(!r.score)return `<div class="rr${r.hl?' hl':''}" style="opacity:.5"><span class="rd">${r.date}${grpBdg}</span><span class="rh">${r.home}</span><span class="rs" style="color:var(--muted);background:none">–</span><span class="ra">${r.away}</span></div>`;
+    return `<div class="rr${r.hl?' hl':''}"><span class="rd">${r.date}${grpBdg}</span><span class="rh">${r.home}</span><span class="rs">${r.score}</span><span class="ra">${r.away}</span></div>`;
+  }).join('');
+}
+
+function initResultFilter(){
+  const c=document.getElementById('r-filter-btns');if(!c)return;
+  const btns=[{v:'ALL',l:'Alle'},{v:'I',l:'🇳🇴 Gr.I'},...'ABCDEFGHJKL'.split('').map(g=>({v:g,l:`Gr.${g}`}))];
+  c.innerHTML=btns.map(b=>`<button class="gbtn${b.v==='ALL'?' on':''}" onclick="setResFilter('${b.v}',this)">${b.l}</button>`).join('');
+}
+function setResFilter(g,btn){
+  document.querySelectorAll('#r-filter-btns .gbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');renderAllResults(g);
+}
 
 // ── Offisiell R32-bracket (FIFA Annex C) ──────────────────────────────────────
 // Kilde: FIFA knockout-stage bracket schedule, verifisert mot gamblingcalc.com
@@ -938,7 +971,7 @@ function renderStats(scorers){
     const body=scorers.map(r=>`<tr class="${r.isN?'nor-row':''}"><td style="color:${r.pos<=3?'#fbbf24':'var(--muted)'}">${r.pos}</td><td>${r.pos===1?'🏆 ':''}${r.player}${r.isN?' 🇳🇴':''}</td><td>${r.team}</td><td style="text-align:center">${r.gp}</td><td style="text-align:center;font-weight:700;color:var(--green)">${r.g}</td><td style="text-align:center">${r.a}</td><td style="text-align:center;font-weight:700">${r.pts}</td></tr>`).join('');
     document.getElementById('tbl-sc').innerHTML=head+`<tbody>${body}</tbody>`;
   }
-  const norP=[['Erling Haaland','Manchester City','Kaptein'],['Martin Ødegaard','Arsenal',''],['Alexander Sørloth','Atlético Madrid',''],['Antonio Nusa','RB Leipzig',''],['Sander Berge','Burnley','']];
+  const norP=[['Erling Haaland','Manchester City',''],['Martin Ødegaard','Arsenal',''],['Alexander Sørloth','Atlético Madrid',''],['Antonio Nusa','RB Leipzig',''],['Sander Berge','Burnley','']];
   const H2=['Spiller','Klubb','KP','M','A','P',''];
   const head2=`<thead><tr>${H2.map((h,i)=>`<th style="text-align:${i<=1?'left':'center'}">${h}</th>`).join('')}</tr></thead>`;
   const body2=norP.map((r,i)=>`<tr style="${i===0?'background:rgba(239,43,45,.18);border-left:3px solid var(--red)':'border-left:3px solid transparent'}"><td style="font-weight:${i===0?700:400}">${r[0]}</td><td style="font-size:11px;color:var(--muted)">${r[1]}</td><td style="text-align:center;color:var(--muted)">–</td><td style="text-align:center;color:var(--muted)">–</td><td style="text-align:center;color:var(--muted)">–</td><td style="text-align:center;color:var(--muted)">–</td><td style="font-size:11px;color:var(--orange)">${r[2]}</td></tr>`).join('');
@@ -1233,7 +1266,7 @@ const PRESETS=[
   {id:'vet',  icon:'🏆',name:'VM-veteranene',      desc:'VM-erfaring avgjør. Kjente stormakter belønnes.',    w:[4,4,9,6,1,0,0]},
   {id:'home', icon:'🌎',name:'Hjemmemesterskapet', desc:'USA, Canada og Mexico løftes av publikum.',          w:[5,5,4,5,9,0,0]},
   {id:'nor',  icon:'🇳🇴',name:'Norgesoptimisten',  desc:'Form tung, erfaring lett. Litt tilfeldighet – Norges beste sjanse!', w:[3,9,1,6,2,0,3]},
-  {id:'h2h',  icon:'⚔️',name:'H2H-tipperen',       desc:'H2H for alle lag. Brasil aldri slått av Norge! Overraskelsene følger historien.', w:[4,6,3,6,1,8,0]},
+  {id:'h2h',  icon:'⚔️',name:'H2H-tipperen',       desc:'Historiske head-to-head for alle lag (~250 par). Basert på faktiske kampresultater.', w:[4,6,3,6,1,8,0]},
 ];
 let currentWeights=[6,6,5,7,2,0,0];let activePreset=null;
 
@@ -1254,7 +1287,7 @@ function applyPreset(id){
   const p=PRESETS.find(x=>x.id===id);if(!p)return;
   activePreset=id;document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('on'));document.getElementById('pbtn-'+id)?.classList.add('on');
   currentWeights=[...p.w];while(currentWeights.length<7)currentWeights.push(0);
-  ['rank','form','exp','squad','home'].forEach((k,i)=>{const sl=document.getElementById('sl-'+k);const vl=document.getElementById('slv-'+k);if(sl)sl.value=currentWeights[i];if(vl)vl.textContent=currentWeights[i];});
+  ['rank','form','exp','squad','home','h2h','rnd'].forEach((k,i)=>{const sl=document.getElementById('sl-'+k);const vl=document.getElementById('slv-'+k);if(sl)sl.value=currentWeights[i];if(vl)vl.textContent=currentWeights[i];});
 }
 function onSlider(i,v){
   currentWeights[i]=parseInt(v)||0;
@@ -1355,8 +1388,10 @@ async function doRefresh(){
       const st=parseStandings(doc);
       if(st&&st.length>=4){
         LIVE_GROUPS[g]=st;
-        if(g==='I'){renderHero(st);renderTable('tbl-i',st);document.getElementById('i-src').textContent='(Wikipedia)';const res=parseResultsHTML(doc);if(res?.length>0){renderResults('res-i',res);document.getElementById('r-src').textContent='(Wikipedia)';}log.push('I ✓');}
-        if(g===activeGrp){renderTable('tbl-other',st);const res=parseResultsHTML(doc);if(res?.length>0)renderResults('res-other',res);}
+        const res=parseResultsHTML(doc);
+        if(g==='I'){renderHero(st);renderTable('tbl-i',st);document.getElementById('i-src').textContent='(Wikipedia)';if(res?.length>0){renderResults('res-i',res);document.getElementById('r-src').textContent='(Wikipedia)';}log.push('I ✓');}
+        if(g===activeGrp){renderTable('tbl-other',st);if(res?.length>0)renderResults('res-other',res);}
+        if(res?.length>0){ALL_RESULTS[g]=res;renderAllResults('ALL');document.getElementById('r-src').textContent='(Wikipedia)';}
       }
     }catch(e){}
   }
@@ -1402,10 +1437,12 @@ renderTable('tbl-i',GROUPS.I);
 renderNorSchedule();
 renderResults('res-i',GRP_I_RES);
 initGrpPanel();
+initResultFilter();
+renderAllResults('ALL');
 renderPlayoff(null);
 renderStats(null);
 initPredictionUI();
-document.getElementById('upd').textContent='Forhåndsvisning · 26. mai 2026';
+document.getElementById('upd').textContent='Turneringen er i gang!';
 doRefresh();
 </script>
 </body>
