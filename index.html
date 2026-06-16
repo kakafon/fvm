@@ -941,9 +941,10 @@ function renderNorSchedule(){
   }).join('');
 }
 function renderResults(id,res){
+  const el=document.getElementById(id);if(!el)return;
   const isEmpty=!res||res.every(r=>!r.score);
-  if(isEmpty){document.getElementById(id).innerHTML='<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Ingen resultater ennå – turneringen starter 11. juni 2026</div>';return;}
-  document.getElementById(id).innerHTML=res.map(r=>`<div class="rr ${r.hl?'hl':''}"><span class="rd">${r.date}</span><span class="rh">${r.home}</span><span class="rs">${r.score||'–'}</span><span class="ra">${r.away}</span></div>`).join('');
+  if(isEmpty){el.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Ingen resultater ennå</div>';return;}
+  el.innerHTML=res.map(r=>`<div class="rr ${r.hl?'hl':''}"><span class="rd">${r.date}</span><span class="rh">${r.home}</span><span class="rs">${r.score||'–'}</span><span class="ra">${r.away}</span></div>`).join('');
 }
 const GRP_NAMES={A:'Gruppe A: Mexico, Sør-Afrika, Sør-Korea, Tsjekkia',B:'Gruppe B: Canada, Bosnia-H., Qatar, Sveits',C:'Gruppe C: Brasil, Marokko, Haiti, Skottland',D:'Gruppe D: USA, Paraguay, Australia, Tyrkia',E:'Gruppe E: Tyskland, Curaçao, Elfenbenskysten, Ecuador',F:'Gruppe F: Nederland, Japan, Sverige, Tunisia',G:'Gruppe G: Belgia, Egypt, Iran, New Zealand',H:'Gruppe H: Spania, Kapp Verde, Saudi-Arabia, Uruguay',I:'Gruppe I: Frankrike, Senegal, Irak, 🇳🇴 Norge',J:'Gruppe J: Argentina, Algeria, Østerrike, Jordan',K:'Gruppe K: Portugal, DR Kongo, Usbekistan, Colombia',L:'Gruppe L: England, Kroatia, Ghana, Panama'};
 function renderGrpBtns(){
@@ -1389,7 +1390,7 @@ async function doRefresh(){
       if(st&&st.length>=4){
         LIVE_GROUPS[g]=st;
         const res=parseResultsHTML(doc);
-        if(g==='I'){renderHero(st);renderTable('tbl-i',st);document.getElementById('i-src').textContent='(Wikipedia)';if(res?.length>0){renderResults('res-i',res);document.getElementById('r-src').textContent='(Wikipedia)';}log.push('I ✓');}
+        if(g==='I'){renderHero(st);renderTable('tbl-i',st);document.getElementById('i-src').textContent='(Wikipedia)';if(res?.length>0){document.getElementById('r-src').textContent='(Wikipedia)';}log.push('I ✓');}
         if(g===activeGrp){renderTable('tbl-other',st);if(res?.length>0)renderResults('res-other',res);}
         if(res?.length>0){ALL_RESULTS[g]=res;renderAllResults('ALL');document.getElementById('r-src').textContent='(Wikipedia)';}
       }
@@ -1435,7 +1436,7 @@ function toggleTheme(){
 renderHero(null);
 renderTable('tbl-i',GROUPS.I);
 renderNorSchedule();
-renderResults('res-i',GRP_I_RES);
+// res-i er erstattet av all-results
 initGrpPanel();
 initResultFilter();
 renderAllResults('ALL');
