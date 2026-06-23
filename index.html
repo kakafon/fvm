@@ -381,9 +381,14 @@ function renderAllResults(filterGrp){
   const upcoming=items.filter(r=>!r.score).sort((a,b)=>parseInt(a.date)-parseInt(b.date));
   const sorted=[...played,...upcoming];
   if(!sorted.length){el.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted)">Ingen kamper å vise</div>';return;}
-  el.innerHTML=sorted.map(r=>{
+  const nPlayed=played.length,nTotal=sorted.length;
+  const statusBar=`<div style="font-size:11px;color:var(--muted);margin-bottom:8px;padding:6px 10px;background:var(--row-even);border-radius:6px">
+    ${nPlayed>0?`✓ <b>${nPlayed}</b> spilt · `:''}${nTotal-nPlayed>0?`${nTotal-nPlayed} kommende`:''}
+    ${nPlayed===0?' · Trykk <b>⟳ Oppdater</b> for live resultater':''}
+  </div>`;
+  el.innerHTML=statusBar+sorted.map(r=>{
     const grpBdg=`<span style="font-size:9px;background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px;margin-left:4px;color:var(--muted)">Gr.${r.grp}</span>`;
-    if(!r.score)return `<div class="rr${r.hl?' hl':''}" style="opacity:.5"><span class="rd">${r.date}${grpBdg}</span><span class="rh">${r.home}</span><span class="rs" style="color:var(--muted);background:none">–</span><span class="ra">${r.away}</span></div>`;
+    if(!r.score)return `<div class="rr${r.hl?' hl':''}" style="opacity:.75"><span class="rd">${r.date}${grpBdg}</span><span class="rh">${r.home}</span><span class="rs" style="color:var(--muted);background:none">–</span><span class="ra">${r.away}</span></div>`;
     return `<div class="rr${r.hl?' hl':''}"><span class="rd">${r.date}${grpBdg}</span><span class="rh">${r.home}</span><span class="rs">${r.score}</span><span class="ra">${r.away}</span></div>`;
   }).join('');
 }
@@ -898,23 +903,89 @@ function parseStandings(doc){
 }
 function parseResultsHTML(doc){
   const results=[];
-  for(const tbl of doc.querySelectorAll('table.wikitable')){
-    for(const row of tbl.querySelectorAll('tr')){
-      const cells=[...row.querySelectorAll('td')];if(cells.length<5)continue;
+  const seen=new Set();
+
+  // Metode 1: Finn football-box klasser (Wikipedia standard for VM-kamper)
+  for(const box of doc.querySelectorAll('.footballbox,.vevent')){
+    try{
+      const getText=sel=>box.querySelector(sel)?.textContent?.trim().replace(/\[.*?\]/g,'').replace(/\u00a0/g,' ').trim()||'';
+      const homeT=getText('.fhome,.home');
+      const awayT=getText('.faway,.away');
+      const scoreT=getText('.fscore,.score');
+      const dateT=getText('.fdate,.date,[class*="date"]');
+      if(!homeT||!awayT||!scoreT) continue;
+      const sm=scoreT.match(/(\d+)[^\d]+(\d+)/);
+      if(!sm) continue;
+      const dm=dateT.match(/(\d{1,2})\s+(June|July|Jun|Jul)/i);
+      const day=dm?.[1]||'?';
+      const mth=(dm?.[2]||'').toLowerCase().startsWith('jul')?'jul':'jun';
+      const key=`${homeT}|${awayT}|${day}`;
+      if(seen.has(key))continue; seen.add(key);
+      const ht=TL(homeT),at=TL(awayT);
+      results.push({date:`${day}. ${mth}`,home:`${ht.f} ${ht.no}`,away:`${at.f} ${at.no}`,score:`${sm[1]}–${sm[2]}`,hl:isNor(homeT+awayT)});
+    }catch(e){}
+  }
+  if(results.length>0) return results.sort((a,b)=>parseInt(a.date)-parseInt(b.date));
+
+  // Metode 2: Finn th/td-rader med score-mønster X–Y i wikitables
+  for(const tbl of doc.querySelectorAll('table.wikitable,table.mw-datatable')){
+    const rows=[...tbl.querySelectorAll('tr')];
+    for(const row of rows){
+      const cells=[...row.querySelectorAll('td,th')];
       const texts=cells.map(c=>c.textContent.trim().replace(/\[.*?\]/g,'').replace(/\u00a0/g,' ').trim());
-      const di=texts.findIndex(t=>/\d{1,2}\s+(June|July)\s+2026/i.test(t));if(di===-1)continue;
-      const dm=texts[di].match(/(\d{1,2})\s+(June|July)/i);
-      const mth=dm?.[2]==='July'?'jul':'jun';const day=dm?.[1];
-      let hs=-1,as_=-1,si=-1;
-      for(let i=di+1;i<texts.length;i++){const m=texts[i].match(/^(\d{1,2})\s*[–\-]\s*(\d{1,2})/);if(m){hs=+m[1];as_=+m[2];si=i;break;}}
-      if(si===-1)continue;
+      // Finn celle med score X–Y
+      let si=-1,hs=-1,as_=-1;
+      for(let i=0;i<texts.length;i++){
+        const m=texts[i].match(/^(\d{1,2})\s*[–\-]\s*(\d{1,2})(?:\s|$)/);
+        if(m&&+m[1]<=20&&+m[2]<=20){hs=+m[1];as_=+m[2];si=i;break;}
+      }
+      if(si<1)continue;
+      // Finn dato
+      let day='?',mth='jun';
+      for(const t of texts){
+        const dm=t.match(/(\d{1,2})\s+(June|July|Jun|Jul)/i);
+        if(dm){day=dm[1];mth=dm[2].toLowerCase().startsWith('jul')?'jul':'jun';break;}
+      }
+      // Hjemme = tekst rett til venstre for score (ikke tall, ikke klokkeslett)
       let home='',away='';
-      for(let i=si-1;i>di;i--){const t=texts[i];if(t.length>=3&&!/^\d/.test(t)&&!/\d{2}:\d{2}/.test(t)){home=t;break;}}
-      for(let i=si+1;i<texts.length;i++){const t=texts[i];if(t.length>=3&&!/^\d/.test(t)&&!/arena|report|attend/i.test(t)){away=t;break;}}
+      for(let i=si-1;i>=0;i--){
+        const t=texts[i];
+        if(t.length>=2&&!/^\d+$/.test(t)&&!/\d{2}:\d{2}/.test(t)&&!/^(report|venue|att)/i.test(t)){home=t;break;}
+      }
+      for(let i=si+1;i<texts.length;i++){
+        const t=texts[i];
+        if(t.length>=2&&!/^\d+$/.test(t)&&!/\d{2}:\d{2}/.test(t)&&!/^(report|venue|att)/i.test(t)){away=t;break;}
+      }
       if(!home||!away||home===away)continue;
+      const key=`${home}|${away}|${day}`;
+      if(seen.has(key))continue; seen.add(key);
       const ht=TL(home),at=TL(away);
       results.push({date:`${day}. ${mth}`,home:`${ht.f} ${ht.no}`,away:`${at.f} ${at.no}`,score:`${hs}–${as_}`,hl:isNor(home+away)});
     }
+  }
+  if(results.length>0) return results.sort((a,b)=>parseInt(a.date)-parseInt(b.date));
+
+  // Metode 3: Søk etter alle lenker med "report" tekst og parse nærmeste data
+  for(const link of doc.querySelectorAll('a')){
+    if(!/match report|rapport/i.test(link.textContent)) continue;
+    const row=link.closest('tr');if(!row)continue;
+    const cells=[...row.querySelectorAll('td,th')];
+    const texts=cells.map(c=>c.textContent.trim().replace(/\[.*?\]/g,'').replace(/\u00a0/g,' ').trim());
+    let si=-1,hs=-1,as_=-1;
+    for(let i=0;i<texts.length;i++){
+      const m=texts[i].match(/(\d{1,2})\s*[–\-]\s*(\d{1,2})/);
+      if(m&&+m[1]<=20&&+m[2]<=20){hs=+m[1];as_=+m[2];si=i;break;}
+    }
+    if(si<1)continue;
+    let home='',away='',day='?',mth='jun';
+    for(const t of texts){const dm=t.match(/(\d{1,2})\s+(June|July)/i);if(dm){day=dm[1];mth=dm[2].toLowerCase().startsWith('j')&&dm[2].length>3?'jul':'jun';break;}}
+    for(let i=si-1;i>=0;i--){const t=texts[i];if(t.length>=2&&!/^\d/.test(t)&&!/\d:\d/.test(t)){home=t;break;}}
+    for(let i=si+1;i<texts.length;i++){const t=texts[i];if(t.length>=2&&!/^\d/.test(t)&&!/\d:\d/.test(t)&&!/report|venue/i.test(t)){away=t;break;}}
+    if(!home||!away||home===away)continue;
+    const key=`${home}|${away}|${day}`;
+    if(seen.has(key))continue; seen.add(key);
+    const ht=TL(home),at=TL(away);
+    results.push({date:`${day}. ${mth}`,home:`${ht.f} ${ht.no}`,away:`${at.f} ${at.no}`,score:`${hs}–${as_}`,hl:isNor(home+away)});
   }
   return results.length>0?results.sort((a,b)=>parseInt(a.date)-parseInt(b.date)):null;
 }
@@ -965,7 +1036,7 @@ function initGrpPanel(){
 }
 function renderStats(scorers){
   if(!scorers||!scorers.length){
-    document.getElementById('tbl-sc').innerHTML=`<tbody><tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Toppscorerlisten oppdateres fra 11. juni</td></tr></tbody>`;
+    document.getElementById('tbl-sc').innerHTML=`<tbody><tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Toppscorerlisten oppdateres etter hvert som VM er i gang.<br>Trykk ⟳ Oppdater for live data.</td></tr></tbody>`;
   } else {
     const H=['#','Spiller','Lag','KP','M','A','P'];
     const head=`<thead><tr>${H.map((h,i)=>`<th style="text-align:${i<=2?'left':'center'}">${h}</th>`).join('')}</tr></thead>`;
@@ -1396,26 +1467,55 @@ async function doRefresh(){
       }
     }catch(e){}
   }
+  // Statistikk: hent fra VM-hovedsiden OG gruppe-sidene
   try{
-    const doc=await fetchWikiHTML('2026_FIFA_World_Cup');const scorers=[];
-    for(const tbl of doc.querySelectorAll('table.wikitable')){
-      const hdr=[...(tbl.querySelector('tr')?.querySelectorAll('th')||[])].map(th=>th.textContent.trim().toUpperCase());
-      if(!hdr.some(h=>h==='G')||!hdr.some(h=>h==='PLAYER'||h==='NAME'))continue;
-      for(const tr of tbl.querySelectorAll('tbody tr')){
-        const cells=[...tr.querySelectorAll('td,th')];if(cells.length<5)continue;
-        const gt=i=>i<cells.length?cells[i].textContent.trim().replace(/\[.*?\]/g,''):'';
-        const pli=hdr.findIndex(h=>h==='PLAYER'||h==='NAME'),gi=hdr.findIndex(h=>h==='G'),
-              ai=hdr.findIndex(h=>h==='A'),ti=hdr.findIndex(h=>h==='TEAM'||h==='COUNTRY'),
-              gpi=hdr.findIndex(h=>h==='GP'||h==='GMS');
+    const scorerMap={};
+    // Hjelpe-funksjon: parse scorere fra en hvilken som helst doc
+    function parseScorersDoc(doc){
+      for(const tbl of doc.querySelectorAll('table.wikitable')){
+        const hdr=[...(tbl.querySelector('tr')?.querySelectorAll('th')||[])].map(th=>th.textContent.trim().toUpperCase().replace(/\s+/g,' '));
+        const hasG=hdr.some(h=>h==='G'||h==='GOALS');
+        const hasPlayer=hdr.some(h=>h==='PLAYER'||h==='NAME');
+        if(!hasG||!hasPlayer)continue;
+        const ci=ns=>{const i=hdr.findIndex(h=>ns.includes(h));return i>=0?i:-1;};
+        const pli=ci(['PLAYER','NAME']),gi=ci(['G','GOALS']),ai=ci(['A','ASSISTS']),
+              ti=ci(['TEAM','COUNTRY','NAT']),gpi=ci(['GP','GMS','MATCHES']);
         if(pli<0||gi<0)continue;
-        const player=gt(pli);const g_=parseInt(gt(gi))||0;if(!player||!g_)continue;
-        const teamT=gt(ti>=0?ti:0);const td=TL(teamT);
-        scorers.push({pos:scorers.length+1,player,team:`${td.f} ${td.no}`,gp:parseInt(gt(gpi>=0?gpi:0))||0,g:g_,a:parseInt(gt(ai>=0?ai:0))||0,pts:g_+(parseInt(gt(ai>=0?ai:0))||0),isN:isNor(teamT)});
+        const found=[];
+        for(const tr of tbl.querySelectorAll('tbody tr')){
+          const cells=[...tr.querySelectorAll('td,th')];if(cells.length<3)continue;
+          const gt=i=>i>=0&&i<cells.length?cells[i].textContent.trim().replace(/\[.*?\]/g,'').replace(/\u00a0/g,' ').trim():'';
+          const player=gt(pli);const g_=parseInt(gt(gi))||0;
+          if(!player||player.length<2)continue;
+          const teamT=ti>=0?gt(ti):'';const td=TL(teamT||player);
+          const key=player.toLowerCase();
+          if(!scorerMap[key]||scorerMap[key].g<g_){
+            scorerMap[key]={player,team:`${td.f} ${td.no}`,
+              gp:parseInt(gt(gpi))||0,g:g_,a:parseInt(gt(ai))||0,isN:isNor(teamT||player)};
+          }
+          found.push(key);
+        }
+        if(found.length>=3)return true;
       }
-      if(scorers.length>=5)break;
+      return false;
     }
-    if(scorers.length>=3){renderStats(scorers);document.getElementById('st-src').textContent='(Wikipedia)';log.push('stats ✓');}
-    else renderStats(null);
+    // Prøv VM-hovedsiden først
+    try{const doc=await fetchWikiHTML('2026_FIFA_World_Cup');parseScorersDoc(doc);}catch(e){}
+    // Prøv også Wikipedia-siden for toppscorere
+    try{const doc=await fetchWikiHTML('2026_FIFA_World_Cup_statistics');parseScorersDoc(doc);}catch(e){}
+    // Bygg scorerliste
+    const scorers=Object.values(scorerMap)
+      .filter(s=>s.g>0)
+      .sort((a,b)=>b.g-a.g||b.a-a.a)
+      .map((s,i)=>({...s,pos:i+1,pts:s.g+s.a}));
+    if(scorers.length>=1){
+      renderStats(scorers);
+      document.getElementById('st-src').textContent='(Wikipedia)';
+      log.push(`stats: ${scorers.length} scorere ✓`);
+    } else {
+      renderStats(null);
+      log.push('stats: ingen data ennå');
+    }
   }catch(e){renderStats(null);}
   const now=new Date().toLocaleString('no-NO',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
   document.getElementById('upd').textContent=now;
